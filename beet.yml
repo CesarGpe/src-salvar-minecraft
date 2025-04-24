@@ -9,7 +9,6 @@ data_pack:
 
 require:
   - bolt
-  - bolt_expressions
   - bookshelf.module.view
 
 pipeline:
