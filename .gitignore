@@ -3,5 +3,6 @@ __*/
 
 build/
 data/bs.*/
+data/load/
 
 *.code-workspace
