@@ -1,0 +1,31 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"  B",
+		" B ",
+		"i  "
+	],
+	"key": {
+		"i": "minecraft:pointed_dripstone",
+		"B": "minecraft:copper_ingot"
+	},
+	"result": {
+		"id": "minecraft:snowball",
+		"components": {
+			"!minecraft:enchantable": {},
+			"minecraft:item_model": "mc2:dripstone_spear",
+			"minecraft:item_name": "Dripstone Spear",
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_damage",
+					"id": "minecraft:dripstone_spear",
+					"amount": 1,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			]
+		},
+		"count": 1
+	}
+}

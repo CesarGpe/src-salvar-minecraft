@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"i": "minecraft:prismarine_shard",
+		"B": "minecraft:breeze_rod",
+		"e": "minecraft:heart_of_the_sea"
+	},
+	"pattern": [
+		" i ",
+		"iei",
+		" B "
+	],
+	"result": {
+		"id": "minecraft:trident",
+		"components": {
+			"minecraft:repairable": {
+				"items": "minecraft:prismarine_shard"
+			}
+		},
+		"count": 1
+	}
+}

@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "use": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+		  "item":{
+			 "components":{
+			"minecraft:custom_data": "{mc2.blueprint_pickaxe:1b}"
+			}		  
+		}
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:golden_pickaxe"
+    ]
+  }
+}

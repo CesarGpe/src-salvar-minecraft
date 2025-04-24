@@ -1,0 +1,112 @@
+from utils import itemTickAdvancement
+RESULT = "mc2.tinker_goggles.temp"
+
+advancement mc2:items/tinker_goggles/tick_head itemTickAdvancement("tinker_goggles", "head")
+function mc2:items/tinker_goggles/tick:
+	scoreboard players set @s RESULT 0
+	function #bs.view:at_aimed_block {run:"function mc2:items/tinker_goggles/check_block",with:{max_distance:5}}
+	execute if score @s RESULT matches 1 run return run advancement revoke @s only mc2:items/tinker_goggles/tick
+
+	# Player coords
+	execute store result score @s mc2.tinker_goggles.coords.x run data get entity @s Pos[0]
+	execute store result score @s mc2.tinker_goggles.coords.y run data get entity @s Pos[1]
+	execute store result score @s mc2.tinker_goggles.coords.z run data get entity @s Pos[2]
+	title @s actionbar ["",{"text":"XYZ: ","color":"gold"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.x"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.y"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.z"}}]
+	advancement revoke @s only mc2:items/tinker_goggles/tick
+
+function mc2:items/tinker_goggles/check_block:
+	for i in range(16):
+		execute if block ~ ~ ~ minecraft:redstone_wire[power=i] run return run function mc2:items/tinker_goggles/show_info {text:"Power", number:i}
+	for i in range(26):
+		execute if block ~ ~ ~ #mc2:plants[age=i] run return run function mc2:items/tinker_goggles/show_info {text:"Age", number:i}
+	for i in range(2):
+		execute if block ~ ~ ~ #minecraft:saplings[stage=i] run return run function mc2:items/tinker_goggles/show_info {text:"Stage", number:i}
+
+function mc2:items/tinker_goggles/show_info:
+	$title @s actionbar [{color:gold,text:"$(text): "},{color:white,text:"$(number)"}]
+	#particle minecraft:crit ~0.5 ~1.25 ~0.5 0 0 0 0 1 force @s
+	scoreboard players set @s RESULT 1
+
+function mc2:give/tinker_goggles:
+	give @p minecraft:music_disc_11[item_name="Tinker Goggles",max_stack_size=1,max_damage=135,damage=0,repairable={items:["minecraft:copper_block"]},item_model="mc2:tinker_goggles",lore=[{"color":"gray","italic":false,"text":"Shows useful block information."}],equippable={slot:"head",equip_sound:"minecraft:item.armor.equip_iron",asset_id:"mc2:redstone_goggles",damage_on_hurt:true,camera_overlay:"minecraft:misc/tinker_goggles_fx",dispensable:true},custom_data={mc2.tinker_goggles:1b},!jukebox_playable] 1
+
+recipe mc2:tinker_goggles {
+	"type": "minecraft:crafting_shaped",
+	"category": "redstone",
+	"pattern": [
+		"ICI",
+		"ABA"
+	],
+	"key": {
+		"A": [
+			"minecraft:amethyst_shard"
+		],
+		"C": [
+			"minecraft:compass"
+		],
+		"I": [
+			"minecraft:copper_ingot"
+		],
+		"B": [
+			"minecraft:copper_block"
+		]
+	},
+	"result": {
+		"id": "minecraft:music_disc_11",
+		"components": {
+			"minecraft:item_name": "NaviGoggles",
+			"minecraft:max_stack_size": 1,
+			"minecraft:max_damage": 135,
+			"minecraft:damage": 0,
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:copper_block"
+				]
+			},
+			"minecraft:item_model": "mc2:tinker_goggles",
+			"minecraft:rarity": "common",
+			"minecraft:lore": [
+				{
+					"color": "gray",
+					"italic": false,
+					"text": "Shows useful block information."
+				}
+			],
+			"minecraft:equippable": {
+				"slot": "head",
+				"equip_sound": "minecraft:item.armor.equip_iron",
+				"asset_id": "mc2:redstone_goggles",
+				"damage_on_hurt": true,
+				"camera_overlay": "minecraft:misc/tinker_goggles_fx",
+				"dispensable": true
+			},
+			"minecraft:custom_data": "{mc2.tinker_goggles:1b}",
+			"!minecraft:jukebox_playable": {}
+		}
+	}
+}
+
+block_tag mc2:plants {
+  "replace": false,
+  "values": [
+    "minecraft:bamboo",
+    "minecraft:beetroots",
+    "minecraft:cactus",
+    "minecraft:chorus_flower",
+    "minecraft:cocoa",
+    "minecraft:weeping_vines",
+    "minecraft:twisting_vines",
+    "minecraft:kelp",
+    "minecraft:mangrove_propagule",
+    "minecraft:nether_wart",
+    "minecraft:pitcher_crop",
+    "minecraft:melon_stem",
+    "minecraft:pumpkin_stem",
+    "minecraft:sugar_cane",
+    "minecraft:sweet_berry_bush",
+    "minecraft:torchflower_crop",
+    "minecraft:wheat",
+    "minecraft:carrots",
+    "minecraft:potatoes"
+  ]
+}

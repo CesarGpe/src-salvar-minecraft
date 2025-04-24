@@ -1,0 +1,35 @@
+data_pack:
+  name: datapack
+  pack_format: 71
+  description: Salvar el mundo
+  load:
+    - data: data
+    - data/mc2/modules: src
+    - pack.png: zpack.png
+
+require:
+  - bolt
+  - bolt_expressions
+  - bookshelf.module.view
+
+pipeline:
+  - mecha
+  - setup
+  - utils
+  - damage
+  - jsons
+  - finish
+
+meta:
+  bolt:
+    entrypoint:
+      - mc2:main
+  lsp:
+    excluded_plugins:
+      - setup
+      - utils
+      - damage
+      - jsons
+      - finish
+
+output: build

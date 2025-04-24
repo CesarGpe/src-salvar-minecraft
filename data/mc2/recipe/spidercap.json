@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": "minecraft:spider_eye",
+    "g": "minecraft:glow_ink_sac"
+  },
+  "pattern": [
+    "XgX",
+    "X X",
+    "g g"
+  ],
+  "result": {
+    "id": "minecraft:music_disc_11",
+    "components": {
+      "!minecraft:enchantable": {},
+      "minecraft:item_name": "Spider Cowl",
+      "minecraft:dyed_color": 0,
+      "minecraft:max_stack_size": 1,
+      "minecraft:max_damage": 20,
+      "minecraft:item_model": "mc2:spider_cowl",
+      "minecraft:rarity": "common",
+      "minecraft:lore": [
+        {
+          "color": "gray",
+          "italic": false,
+          "text": "Grants night vision."
+        },
+        {
+          "color": "gray",
+          "italic": false,
+          "text": "Degrades with time."
+        }
+      ],
+      "minecraft:tooltip_display": {
+        "hidden_components": [
+          "trim",
+          "dyed_color"
+        ]
+      },
+      "minecraft:equippable": {
+        "slot": "head",
+        "equip_sound": "entity.spider.step",
+        "asset_id": "mc2:spider_mask",
+        "camera_overlay": "minecraft:misc/spidercap_fx",
+        "damage_on_hurt": false,
+        "swappable": true
+      },
+      "minecraft:custom_data": "{mc2.spidercap:1b}",
+      "!minecraft:jukebox_playable": {}
+    }
+  }
+}

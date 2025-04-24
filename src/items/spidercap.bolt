@@ -1,0 +1,80 @@
+# Spidercap is fully generated via plugin!!! Yipee!!
+
+#from mc2:utils import damageItem, itemTickAdvancement
+#TIMER = "mc2.spidercap.durability_timer"
+
+#advancement mc2:items/spidercap/tick itemTickAdvancement("spidercap")
+#function mc2:items/spidercap/tick:
+#	effect give @s minecraft:night_vision 3 0 true
+#	execute if predicate mc2:in_creative run return run advancement revoke @s only mc2:items/spidercap/tick
+#	scoreboard players add @s TIMER 1
+#	execute if score @s TIMER matches 1200.. run function mc2:items/spidercap/damage
+#	advancement revoke @s only mc2:items/spidercap/tick
+
+#function mc2:items/spidercap/damage:
+#	scoreboard players reset @s TIMER
+#	damageItem("armor.head")
+#
+#	# Break the item
+#	execute unless items entity @s armor.head *[minecraft:custom_data={mc2.spidercap:1b},minecraft:damage=20] run return 0
+#	item replace entity @s armor.head with air
+#	playsound minecraft:entity.item.break player @a ~ ~ ~ 0.8 1.2 0
+#	playsound minecraft:entity.spider.death player @a ~ ~ ~ 1 0.8 0
+#	particle item{item:"spider_spawn_egg"} ~ ~1.8 ~ 0 0 0 0.1 15 normal
+
+function mc2:give/spidercap:
+	give @p minecraft:music_disc_11[item_name="Spider Cowl",max_stack_size=1,damage=0,max_damage=20,rarity=common,item_model="mc2:spider_cowl",lore=[{"color":"gray","italic":false,"text":"Grants night vision."},{"color":"gray","italic":false,"text":"Degrades with time."}],equippable={slot:"head",equip_sound:"entity.spider.step",asset_id:"mc2:spider_mask",camera_overlay:"minecraft:misc/spidercap_fx",dispensable:true,damage_on_hurt:false},custom_data={mc2.spidercap:1b},!jukebox_playable] 1
+
+recipe mc2:spidercap {
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"key": {
+		"X": "minecraft:spider_eye",
+		"g": "minecraft:glow_ink_sac"
+	},
+	"pattern": [
+		"XgX",
+		"X X",
+		"g g"
+	],
+	"result": {
+		"id": "minecraft:music_disc_11",
+		"components": {
+			"!minecraft:enchantable": {},
+			"minecraft:item_name": "Spider Cowl",
+			"minecraft:dyed_color": 0,
+			"minecraft:max_stack_size": 1,
+			"minecraft:max_damage": 20,
+			"minecraft:item_model": "mc2:spider_cowl",
+			"minecraft:rarity": "common",
+			"minecraft:lore": [
+				{
+					"color": "gray",
+					"italic": false,
+					"text": "Grants night vision."
+				},
+				{
+					"color": "gray",
+					"italic": false,
+					"text": "Degrades with time."
+				}
+			],
+			"minecraft:tooltip_display": {
+				"hidden_components": [
+					"trim",
+					"dyed_color"
+				]
+			},
+			"minecraft:equippable": {
+				"slot": "head",
+				"equip_sound": "entity.spider.step",
+				"asset_id": "mc2:spider_mask",
+				"camera_overlay": "minecraft:misc/spidercap_fx",
+				"damage_on_hurt": false,
+				"swappable": true
+			},
+			"minecraft:custom_data": "{mc2.spidercap:1b}",
+			"!minecraft:jukebox_playable": {}
+		}
+	}
+}

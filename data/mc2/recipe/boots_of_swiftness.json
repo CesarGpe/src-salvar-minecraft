@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		"B B",
+		"i i",
+		"i i"
+	],
+	"key": {
+		"i": "minecraft:leather",
+		"B": "minecraft:feather"
+	},
+	"result": {
+		"id": "minecraft:music_disc_13",
+		"components": {
+			"!minecraft:jukebox_playable": {},
+			"minecraft:max_damage": 20,
+			"minecraft:custom_data": "{mc2.boots_of_swiftness:1b}",
+			"minecraft:damage": 0,
+			"minecraft:equippable": {
+				"slot": "feet",
+				"asset_id": "mc2:swiftness_boots",
+				"damage_on_hurt": true
+			},
+			"minecraft:item_model": "mc2:boots_of_swiftness",
+			"minecraft:item_name": "Boots of Swiftness",
+			"minecraft:max_stack_size": 1,
+			"minecraft:rarity": "uncommon",
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:movement_speed",
+					"id": "mc2:swiftness",
+					"amount": 0.2,
+					"operation": "add_multiplied_base",
+					"slot": "feet"
+				}
+			]
+		},
+		"count": 1
+	}
+}

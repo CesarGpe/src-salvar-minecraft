@@ -1,0 +1,33 @@
+{
+  "function": "minecraft:set_components",
+  "components": {
+    "minecraft:max_damage": 1000,
+    "minecraft:max_stack_size": 1,
+    "minecraft:consumable": {
+      "consume_seconds": 2147483647
+    },
+    "minecraft:enchantments": {
+      "minecraft:mending": 1
+    },
+    "minecraft:tooltip_display": {
+      "hidden_components": [
+        "minecraft:enchantments"
+      ]
+    },
+    "minecraft:lore": [
+      {
+        "color": "gray",
+        "italic": false,
+        "text": "Teleports you home."
+      },
+      {
+        "color": "gray",
+        "italic": false,
+        "text": "Unbreakable, charges with XP."
+      }
+    ],
+    "minecraft:custom_data": {
+      "mc2.recovery_compass": true
+    }
+  }
+}

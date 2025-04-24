@@ -1,0 +1,45 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		" i ",
+		" f ",
+		" i "
+	],
+	"key": {
+		"i": "minecraft:nautilus_shell",
+		"f": "minecraft:pufferfish"
+	},
+	"result": {
+		"id": "minecraft:music_disc_13",
+		"components": {
+			"minecraft:item_model": "mc2:supershell",
+			"minecraft:custom_data": "{mc2.supershell:1b}",
+			"minecraft:item_name": "Magic Conch Shell",
+			"!minecraft:jukebox_playable": {},
+			"minecraft:max_damage": 50,
+			"minecraft:damage": 0,
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:submerged_mining_speed",
+					"id": "minecraft:supershell_speed",
+					"amount": 1,
+					"operation": "add_multiplied_total",
+					"slot": "hand"
+				},
+				{
+					"type": "minecraft:oxygen_bonus",
+					"id": "minecraft:supershell_oxygen",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "hand"
+				}
+			],
+			"minecraft:equippable": {
+				"slot": "offhand",
+				"swappable": false
+			}
+		},
+		"count": 1
+	}
+}

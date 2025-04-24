@@ -1,0 +1,193 @@
+from utils import damageItem
+
+TPABLE = "mc2.recovery_compass.can_tp"
+COOLDOWN = "mc2.recovery_compass.cooldown"
+TIMER = "mc2.recovery_compass.timer"
+USE = "mc2.recovery_compass.use"
+RANGE = "1..100"
+
+function mc2:items/recovery_compass/check_dimension_macro:
+	# i cant use TPABLE here because of macros
+	$execute if dimension $(dimension) unless score @s TPABLE matches 0 run return run scoreboard players set @s mc2.recovery_compass.can_tp 1
+	scoreboard players set @s TPABLE 0
+
+function mc2:items/recovery_compass/cant_tp:
+	effect give @s minecraft:blindness 1 0 true
+	playsound minecraft:entity.allay.hurt player @a ~ ~ ~ 0.4 0 0
+	playsound minecraft:entity.warden.attack_impact player @a ~ ~ ~ 0.5 0 0
+	playsound minecraft:block.trial_spawner.detect_player player @a ~ ~ ~ 0.5 0.5 0
+	execute anchored eyes run particle minecraft:sculk_soul ^ ^ ^0.2 0.1 0.1 0.1 0.06 20
+	execute anchored eyes run particle minecraft:smoke ^ ^ ^0.2 0.25 0.1 0.25 0 6
+
+function mc2:items/recovery_compass/use:
+	execute unless score @s USE matches 1..:
+		scoreboard players set @s TPABLE 1
+
+		# Not in the correct dimension
+		execute if data entity @s respawn.dimension run function mc2:items/recovery_compass/check_dimension_macro with entity @s respawn
+		execute unless data entity @s respawn.dimension:
+			execute unless dimension minecraft:overworld run scoreboard players set @s TPABLE 0
+			execute if dimension minecraft:overworld unless score @s TPABLE matches 0 run scoreboard players set @s TPABLE 1
+
+		# Not enough durability
+		execute if items entity @s weapon.mainhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
+			execute store result score .durCheck TPABLE run data get entity @s SelectedItem.components."minecraft:damage"
+		execute if items entity @s weapon.offhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
+			execute store result score .durCheck TPABLE run data get entity @s equipment.offhand.components."minecraft:damage"
+		execute if score .durCheck TPABLE matches ..800 unless score @s TPABLE matches 0 run scoreboard players set @s TPABLE 1
+		execute if score .durCheck TPABLE matches 801.. run scoreboard players set @s[predicate=mc2:in_survival] TPABLE 0
+
+		# On cooldown
+		execute if score @s COOLDOWN matches 1.. scoreboard players set @s TPABLE 0
+
+		# Effects if you cant teleport
+		execute if score @s TPABLE matches 0 run function mc2:items/recovery_compass/cant_tp
+
+	execute unless score @s COOLDOWN matches 1.. unless score @s TPABLE matches 0:
+		execute unless score @s USE matches 1.. run scoreboard players reset @s TIMER
+			
+		# Runs once at the start of this event
+		execute if score @s TIMER matches 1:
+			attribute @s minecraft:jump_strength modifier add mc2:recovery_compass -1 add_value
+			playsound minecraft:block.trial_spawner.about_to_spawn_item player @a ~ ~ ~ 1 0.5 0
+			playsound minecraft:entity.warden.emerge player @a ~ ~ ~ 0.35 1.5 0
+			effect give @s minecraft:slowness 6 5 true
+			effect give @s minecraft:nausea 9 0 true
+
+		# Show particles through all the event
+		execute if score @s TIMER matches RANGE run particle minecraft:sculk_soul ~ ~1.5 ~ 0.8 0.5 0.8 0.02 1
+
+		# tictoc
+		execute if score @s TIMER matches 10:
+			function mc2:items/recovery_compass/dong
+		execute if score @s TIMER matches 40:
+			function mc2:items/recovery_compass/dong
+		execute if score @s TIMER matches 70:
+			function mc2:items/recovery_compass/dong
+
+		# Beam the player up
+		execute if score @s TIMER matches 99:
+			execute anchored eyes run particle minecraft:sonic_boom ^ ^ ^0.2 0 0 0 0 1
+			execute store result storage mc2:storage data.recovery_compass.coords.x int 1 run data get entity @s respawn.pos[0]
+			execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run data get entity @s respawn.pos[1]
+			execute store result storage mc2:storage data.recovery_compass.coords.z int 1 run data get entity @s respawn.pos[2]
+			function mc2:utils/tp_macro with storage mc2:storage data.recovery_compass.coords
+			data remove storage mc2:storage data.recovery_compass
+
+		# Effects need to be separated to make sure they actually happen AFTER the teleport
+		execute if score @s TIMER matches 100:
+			function mc2:items/recovery_compass/dong
+			execute anchored eyes run particle minecraft:flash ^ ^ ^0.2 0 0 0 0 5 force @s
+			execute anchored eyes run particle minecraft:sonic_boom ^ ^ ^0.2 0 0 0 0 1
+			playsound minecraft:block.trial_spawner.spawn_item player @a ~ ~ ~ 1 0 0
+			function mc2:items/recovery_compass/end_tp
+
+			execute if predicate mc2:in_survival:
+				execute if items entity @s weapon.mainhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
+					damageItem("weapon.mainhand", 200)
+				execute if items entity @s weapon.offhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
+					damageItem("weapon.offhand", 200)
+		
+		# Increment timer
+		scoreboard players add @s TIMER 1
+
+	advancement revoke @s only mc2:items/recovery_compass/use
+	advancement revoke @s only mc2:items/recovery_compass/cd
+	scoreboard players set @s USE 2
+
+function mc2:items/recovery_compass/dong:
+	effect give @s minecraft:darkness 2 0 true
+	playsound minecraft:entity.warden.heartbeat player @a ~ ~ ~ 1 0 0
+	playsound minecraft:block.sculk_catalyst.place player @a ~ ~ ~ 1 0 0
+	playsound minecraft:block.sculk_catalyst.break player @a ~ ~ ~ 1 0 0
+	particle minecraft:trial_spawner_detection_ominous ~ ~0.5 ~ 0.35 0.5 0.35 0.01 60
+
+function mc2:items/recovery_compass/cd:
+	scoreboard players remove @s USE 1
+	execute if score @s USE matches 1.. run return run advancement revoke @s only mc2:items/recovery_compass/cd
+	scoreboard players reset @s USE
+
+	# Teleport was cancelled
+	execute if score @s TIMER matches RANGE:
+		effect clear @s minecraft:nausea
+		playsound minecraft:block.bell.use player @a ~ ~ ~ 1 0 0
+		playsound minecraft:entity.warden.death player @a ~ ~ ~ 1 0 0
+		stopsound @s player minecraft:block.trial_spawner.about_to_spawn_item
+		particle minecraft:sculk_charge{roll:0} ~ ~0.2 ~ 0.5 0 0.5 0 35
+		particle minecraft:sculk_charge_pop ~ ~1.2 ~ 0.35 0.5 0.35 0.05 50
+		particle minecraft:sculk_soul ~ ~1.25 ~ 0.1 0.1 0.1 0.08 10
+		function mc2:items/recovery_compass/end_tp
+	scoreboard players reset @s TIMER
+
+# Common effects after teleport or cancel
+function mc2:items/recovery_compass/end_tp:
+	attribute @s minecraft:jump_strength modifier remove mc2:recovery_compass
+	scoreboard players set @s COOLDOWN 60
+
+# Check every single slot for a compass to modify (thank you john minecraft)
+function mc2:items/recovery_compass/replace:
+	execute if items entity @s player.cursor minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s player.cursor mc2:change_recovery_compass
+	execute if items entity @s weapon.mainhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.mainhand mc2:change_recovery_compass
+	execute if items entity @s weapon.offhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.offhand mc2:change_recovery_compass
+	for i in range(27):
+		slot = f"inventory.{i}"
+		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
+	for i in range(9):
+		slot = f"hotbar.{i}"
+		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
+	advancement revoke @s only mc2:items/recovery_compass/replace
+
+# Advancement to detect the right click
+advancement mc2:items/recovery_compass/use {
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:using_item",
+			"conditions": {
+				"item": {
+					"predicates": {
+						"minecraft:custom_data": {
+							"mc2.recovery_compass":true
+						}
+					}
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "mc2:items/recovery_compass/use"
+	}
+}
+
+# Helper advancement to make the use function not run every tick
+advancement mc2:items/recovery_compass/cd {
+	"criteria": {
+		"tick": {
+			"trigger": "minecraft:tick"
+		}
+	},
+	"rewards": {
+		"function": "mc2:items/recovery_compass/cd"
+	}
+}
+
+# Advancement to replace any unchanged vanilla compasses
+advancement mc2:items/recovery_compass/replace {
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": "minecraft:recovery_compass",
+						"components": {
+							"minecraft:max_stack_size": 64
+						}
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "mc2:items/recovery_compass/replace"
+	}
+}

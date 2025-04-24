@@ -1,0 +1,7 @@
+.*/
+__*/
+
+build/
+data/bs.*/
+
+*.code-workspace

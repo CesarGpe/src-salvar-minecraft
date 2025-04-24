@@ -1,0 +1,54 @@
+advancement mc2:event/slept_in_bed {
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:slept_in_bed"
+		}
+	},
+	"rewards": {
+		"function": "mc2:event/slept_in_bed"
+	}
+}
+
+function mc2:event/slept_in_bed:
+	effect give @s minecraft:hunger 5 190 true
+	advancement revoke @s only mc2:event/slept_in_bed
+
+advancement mc2:event/inventory_changed {
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:inventory_changed"
+		}
+	},
+	"rewards": {
+		"function": "mc2:event/inventory_changed"
+	}
+}
+
+function mc2:event/inventory_changed:
+	for i in range(54):
+		slot = f"container.{i}"
+		execute if items entity @s slot *[minecraft:max_damage] run item modify entity @s slot {"function":"minecraft:set_components","components":{"minecraft:repair_cost":5}}
+	advancement revoke @s only mc2:event/inventory_changed
+
+advancement mc2:event/brushed_armadillo {
+	"criteria": {
+		"requirement": {
+			"trigger": "minecraft:player_interacted_with_entity",
+			"conditions": {
+				"entity": {
+					"type": "minecraft:armadillo"
+				},
+				"item": {
+					"items": "minecraft:brush"
+				}
+			}
+		}
+	},
+	"rewards": {
+		"function": "mc2:event/brushed_armadillo"
+	}
+}
+
+function mc2:event/brushed_armadillo:
+	kill @n[type=item,distance=..6,nbt={Item:{id:"minecraft:armadillo_scute"}}]
+	advancement revoke @s only mc2:event/brushed_armadillo

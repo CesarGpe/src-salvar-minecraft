@@ -1,0 +1,108 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "equipment",
+	"pattern": [
+		" i ",
+		"ei ",
+		" e "
+	],
+	"key": {
+		"i": "minecraft:amethyst_shard",
+		"e": "minecraft:copper_ingot"
+	},
+	"result": {
+		"id": "minecraft:music_disc_13",
+		"components": {
+			"!minecraft:jukebox_playable": {},
+			"minecraft:rarity": "common",
+			"!minecraft:enchantable": {
+				"value": 15
+			},
+			"minecraft:item_model": "mc2:rapier",
+			"minecraft:item_name": "Amethyst Saber",
+			"minecraft:max_stack_size": 1,
+			"minecraft:max_damage": 150,
+			"minecraft:damage": 0,
+			"minecraft:break_sound": "block.amethyst_block.break",
+			"minecraft:repair_cost": 0,
+			"minecraft:repairable": {
+				"items": [
+					"minecraft:amethyst_shard"
+				]
+			},
+			"minecraft:weapon": {
+				"item_damage_per_attack": 3
+			},
+			"minecraft:attribute_modifiers": [
+				{
+					"type": "minecraft:attack_damage",
+					"id": "minecraft:rapier_damage",
+					"amount": 2,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:attack_speed",
+					"id": "minecraft:rapier_speed",
+					"amount": 4,
+					"operation": "add_value",
+					"slot": "mainhand"
+				},
+				{
+					"type": "minecraft:entity_interaction_range",
+					"id": "mc2:rapier_reach",
+					"amount": 0.5,
+					"operation": "add_value",
+					"slot": "mainhand"
+				}
+			],
+			"minecraft:tool": {
+				"rules": [
+					{
+						"blocks": "minecraft:cobweb",
+						"speed": 10,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:vine",
+						"speed": 2,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:bamboo",
+						"speed": 10,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:pumpkin",
+						"speed": 1.5,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:carved_pumpkin",
+						"speed": 1.5,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:melon",
+						"speed": 1.5,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "minecraft:jack_o_lantern",
+						"speed": 1.5,
+						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:leaves",
+						"speed": 2,
+						"correct_for_drops": false
+					}
+				],
+				"damage_per_block": 2,
+				"can_destroy_blocks_in_creative": false
+			}
+		},
+		"count": 1
+	}
+}

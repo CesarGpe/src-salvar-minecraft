@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_killed_guardian": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:elder_guardian"
+            }
+          }
+        ]
+      },
+	 "trigger": "minecraft:player_killed_entity"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mc2:trident"
+      },
+	  "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_killed_guardian"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mc2:trident"
+    ]
+  }
+}
