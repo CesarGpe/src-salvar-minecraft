@@ -3,13 +3,13 @@ data_pack:
   pack_format: 71
   description: Salvar el mundo
   load:
+    - bs.view
     - data: data
     - data/mc2/modules: src
     - pack.png: zpack.png
 
 require:
   - bolt
-  - bookshelf.module.view
 
 pipeline:
   - mecha
@@ -31,4 +31,4 @@ meta:
       - jsons
       - finish
 
-output: build
+output: bin
