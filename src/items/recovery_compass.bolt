@@ -68,11 +68,13 @@ function mc2:items/recovery_compass/use:
 		# Beam the player up
 		execute if score @s TIMER matches 99:
 			execute anchored eyes run particle minecraft:sonic_boom ^ ^ ^0.2 0 0 0 0 1
-			execute store result storage mc2:storage data.recovery_compass.coords.x int 1 run data get entity @s respawn.pos[0]
-			execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run data get entity @s respawn.pos[1]
-			execute store result storage mc2:storage data.recovery_compass.coords.z int 1 run data get entity @s respawn.pos[2]
-			function mc2:utils/tp_macro with storage mc2:storage data.recovery_compass.coords
-			data remove storage mc2:storage data.recovery_compass
+			execute if data entity @s respawn run return:
+				execute store result storage mc2:storage data.recovery_compass.coords.x int 1 run data get entity @s respawn.pos[0]
+				execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run data get entity @s respawn.pos[1]
+				execute store result storage mc2:storage data.recovery_compass.coords.z int 1 run data get entity @s respawn.pos[2]
+				function mc2:utils/tp_macro with storage mc2:storage data.recovery_compass.coords
+				data remove storage mc2:storage data.recovery_compass
+			function mc2:utils/tp_macro with storage mc2:storage data.world_spawn
 
 		# Effects need to be separated to make sure they actually happen AFTER the teleport
 		execute if score @s TIMER matches 100:

@@ -3,7 +3,6 @@ data_pack:
   pack_format: 71
   description: Salvar el mundo
   load:
-    - bs.view
     - data: data
     - data/mc2/modules: src
     - pack.png: zpack.png
@@ -13,6 +12,7 @@ require:
 
 pipeline:
   - mecha
+  - beet.contrib.load
   - setup
   - utils
   - damage
@@ -23,6 +23,8 @@ meta:
   bolt:
     entrypoint:
       - mc2:main
+  load:
+    data_pack: "bs.view"
   lsp:
     excluded_plugins:
       - setup

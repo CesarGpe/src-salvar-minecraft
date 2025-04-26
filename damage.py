@@ -17,6 +17,7 @@ class ItemConfig:
 
 # List of custom_data tags that will be affected by this plugin
 ITEMS = [
+    ItemConfig(tag="udjat",slot=["weapon.offhand","weapon.mainhand"]),
     ItemConfig(tag="hopoo_feather",slot=["weapon.offhand","weapon.mainhand"]),
     ItemConfig(tag="supershell",slot=["weapon.offhand","weapon.mainhand"]),
     ItemConfig(tag="spidercap",slot="armor.head",tick_func="effect give @s minecraft:night_vision 3 0 true",break_func=[
