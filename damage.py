@@ -38,7 +38,7 @@ def registerForDamage(ctx:Context, item:ItemConfig):
 		slot_name = slot.split(".")[-1]
 
 		real_break_func = Function([
-			f'execute unless items entity @s {slot} *[minecraft:custom_data={{mc2.{item.tag}:1b}},minecraft:damage={item.max_damage}] run return 0',
+			f'execute unless items entity @s {slot} *[minecraft:custom_data={{mc2.{item.tag}:true}},minecraft:damage={item.max_damage}] run return 0',
 			f'item replace entity @s {slot} with air'
 		])
 		real_break_func.append(item.break_func)
@@ -65,7 +65,7 @@ def registerForDamage(ctx:Context, item:ItemConfig):
 	""" TIMER = scoreboard(ctx, item.tag, "durability_timer", "dummy")
 	
 	real_break_func = Function([
-		f'execute unless items entity @s {item.slot} *[minecraft:custom_data={{mc2.{item.tag}:1b}},minecraft:damage={item.max_damage}] run return 0',
+		f'execute unless items entity @s {item.slot} *[minecraft:custom_data={{mc2.{item.tag}:true}},minecraft:damage={item.max_damage}] run return 0',
 		f'item replace entity @s {item.slot} with air'
 	])
 	real_break_func.append(item.break_func)

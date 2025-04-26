@@ -121,7 +121,7 @@
 					"!minecraft:jukebox_playable": {},
 					"minecraft:rarity": "uncommon",
 					"!minecraft:enchantable" : {},
-					"minecraft:custom_data": "{mc2.blueprint_pickaxe:1b}",
+					"minecraft:custom_data": "{mc2.blueprint_pickaxe:true}",
 					"minecraft:item_model": "mc2:blueprint_pickaxe",
 					"minecraft:item_name": "Golden Pickaxe Blueprint",
 					"minecraft:max_stack_size": 1,

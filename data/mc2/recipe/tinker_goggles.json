@@ -48,7 +48,7 @@
         "camera_overlay": "minecraft:misc/tinker_goggles_fx",
         "dispensable": true
       },
-      "minecraft:custom_data": "{mc2.tinker_goggles:1b}",
+      "minecraft:custom_data": "{mc2.tinker_goggles:true}",
       "!minecraft:jukebox_playable": {}
     }
   }

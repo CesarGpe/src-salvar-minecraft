@@ -13,7 +13,7 @@
 	"result": {
 		"id": "minecraft:music_disc_13",
 		"components": {
-			"minecraft:custom_data": "{mc2.hopoo_feather:1b}",
+			"minecraft:custom_data": "{mc2.hopoo_feather:true}",
 			"minecraft:item_model": "mc2:hopoo_feather",
 			"minecraft:max_damage": 50,
 			"minecraft:damage": 0,

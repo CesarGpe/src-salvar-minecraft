@@ -6,7 +6,7 @@
       "conditions": {
 		  "item":{
 			 "components":{
-			"minecraft:custom_data": "{mc2.blueprint_crossbow:1b}"
+			"minecraft:custom_data": "{mc2.blueprint_crossbow:true}"
 			}		  
 		}
       }

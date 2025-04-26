@@ -23,6 +23,7 @@ def schedule(ctx:Context, func, time):
 def beet_default(ctx: Context):
     # Technical scoreboards
 	scoreboard(ctx, "recovery_compass", "cooldown", "dummy", True)
+	scoreboard(ctx, "recovery_compass", "math", "dummy")
 	scoreboard(ctx, "recovery_compass", "can_tp", "dummy")
 	scoreboard(ctx, "recovery_compass", "timer", "dummy")
 	scoreboard(ctx, "recovery_compass", "use", "dummy")

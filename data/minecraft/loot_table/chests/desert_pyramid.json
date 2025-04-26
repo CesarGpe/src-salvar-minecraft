@@ -276,7 +276,7 @@
 				},
 			
 					"minecraft:max_damage" : 100,
-					"minecraft:custom_data": "{mc2.boots_of_swiftness:1b}",
+					"minecraft:custom_data": "{mc2.boots_of_swiftness:true}",
 					"minecraft:damage" : 0,
 					"minecraft:equippable": {
 						"slot": "feet",

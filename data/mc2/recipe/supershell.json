@@ -14,7 +14,7 @@
 		"id": "minecraft:music_disc_13",
 		"components": {
 			"minecraft:item_model": "mc2:supershell",
-			"minecraft:custom_data": "{mc2.supershell:1b}",
+			"minecraft:custom_data": "{mc2.supershell:true}",
 			"minecraft:item_name": "Magic Conch Shell",
 			"!minecraft:jukebox_playable": {},
 			"minecraft:max_damage": 50,

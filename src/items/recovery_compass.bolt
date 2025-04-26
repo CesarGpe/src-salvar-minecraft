@@ -1,15 +1,16 @@
 from utils import damageItem
 
-TPABLE = "mc2.recovery_compass.can_tp"
+MATH = "mc2.recovery_compass.math"
+CAN_TP = "mc2.recovery_compass.can_tp"
 COOLDOWN = "mc2.recovery_compass.cooldown"
 TIMER = "mc2.recovery_compass.timer"
 USE = "mc2.recovery_compass.use"
 RANGE = "1..100"
 
 function mc2:items/recovery_compass/check_dimension_macro:
-	# i cant use TPABLE here because of macros
-	$execute if dimension $(dimension) unless score @s TPABLE matches 0 run return run scoreboard players set @s mc2.recovery_compass.can_tp 1
-	scoreboard players set @s TPABLE 0
+	# i cant use CAN_TP here because of macros
+	$execute if dimension $(dimension) run return run scoreboard players set @s mc2.recovery_compass.can_tp 1
+	scoreboard players set @s CAN_TP 0
 
 function mc2:items/recovery_compass/cant_tp:
 	effect give @s minecraft:blindness 1 0 true
@@ -21,29 +22,29 @@ function mc2:items/recovery_compass/cant_tp:
 
 function mc2:items/recovery_compass/use:
 	execute unless score @s USE matches 1..:
-		scoreboard players set @s TPABLE 1
+		scoreboard players set @s CAN_TP 1
 
 		# Not in the correct dimension
 		execute if data entity @s respawn.dimension run function mc2:items/recovery_compass/check_dimension_macro with entity @s respawn
 		execute unless data entity @s respawn.dimension:
-			execute unless dimension minecraft:overworld run scoreboard players set @s TPABLE 0
-			execute if dimension minecraft:overworld unless score @s TPABLE matches 0 run scoreboard players set @s TPABLE 1
+			execute unless dimension minecraft:overworld run scoreboard players set @s CAN_TP 0
+			execute if dimension minecraft:overworld unless score @s CAN_TP matches 0 run scoreboard players set @s CAN_TP 1
 
 		# Not enough durability
 		execute if items entity @s weapon.mainhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
-			execute store result score .durCheck TPABLE run data get entity @s SelectedItem.components."minecraft:damage"
+			execute store result score .durCheck CAN_TP run data get entity @s SelectedItem.components."minecraft:damage"
 		execute if items entity @s weapon.offhand *[minecraft:custom_data={mc2.recovery_compass:true}]:
-			execute store result score .durCheck TPABLE run data get entity @s equipment.offhand.components."minecraft:damage"
-		execute if score .durCheck TPABLE matches ..800 unless score @s TPABLE matches 0 run scoreboard players set @s TPABLE 1
-		execute if score .durCheck TPABLE matches 801.. run scoreboard players set @s[predicate=mc2:in_survival] TPABLE 0
+			execute store result score .durCheck CAN_TP run data get entity @s equipment.offhand.components."minecraft:damage"
+		execute if score .durCheck CAN_TP matches ..800 unless score @s CAN_TP matches 0 run scoreboard players set @s CAN_TP 1
+		execute if score .durCheck CAN_TP matches 801.. run scoreboard players set @s[predicate=mc2:in_survival] CAN_TP 0
 
 		# On cooldown
-		execute if score @s COOLDOWN matches 1.. scoreboard players set @s TPABLE 0
+		execute if score @s COOLDOWN matches 1.. scoreboard players set @s CAN_TP 0
 
 		# Effects if you cant teleport
-		execute if score @s TPABLE matches 0 run function mc2:items/recovery_compass/cant_tp
+		execute if score @s CAN_TP matches 0 run function mc2:items/recovery_compass/cant_tp
 
-	execute unless score @s COOLDOWN matches 1.. unless score @s TPABLE matches 0:
+	execute unless score @s COOLDOWN matches 1.. unless score @s CAN_TP matches 0:
 		execute unless score @s USE matches 1.. run scoreboard players reset @s TIMER
 			
 		# Runs once at the start of this event
@@ -70,10 +71,11 @@ function mc2:items/recovery_compass/use:
 			execute anchored eyes run particle minecraft:sonic_boom ^ ^ ^0.2 0 0 0 0 1
 			execute if data entity @s respawn run return:
 				execute store result storage mc2:storage data.recovery_compass.coords.x int 1 run data get entity @s respawn.pos[0]
-				execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run data get entity @s respawn.pos[1]
+				#execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run data get entity @s respawn.pos[1]
+				execute store result score @s MATH run data get entity @s respawn.pos[1]
+				execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run scoreboard players add @s mc2.recovery_compass.math 1
 				execute store result storage mc2:storage data.recovery_compass.coords.z int 1 run data get entity @s respawn.pos[2]
 				function mc2:utils/tp_macro with storage mc2:storage data.recovery_compass.coords
-				data remove storage mc2:storage data.recovery_compass
 			function mc2:utils/tp_macro with storage mc2:storage data.world_spawn
 
 		# Effects need to be separated to make sure they actually happen AFTER the teleport

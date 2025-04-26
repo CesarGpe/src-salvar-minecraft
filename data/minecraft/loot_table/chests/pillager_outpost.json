@@ -209,7 +209,7 @@
 					"!minecraft:jukebox_playable": {},
 					"minecraft:rarity": "uncommon",
 					"!minecraft:enchantable" : {},
-					"minecraft:custom_data": "{mc2.blueprint_crossbow:1b}",
+					"minecraft:custom_data": "{mc2.blueprint_crossbow:true}",
 					"minecraft:item_model": "mc2:blueprint_crossbow",
 					"minecraft:item_name": "Crossbow Blueprint",
 					"minecraft:max_stack_size": 1,

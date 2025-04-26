@@ -21,7 +21,6 @@ def damageItem(SLOT:str, AMOUNT=1) -> Function:
 
 		f'data modify storage mc2:storage data.utils merge value {{slot:{SLOT}}}',
 		'function mc2:utils/damage_macro with storage mc2:storage data.utils',
-		'data remove storage mc2:storage data.utils',
 	])
 
 def itemTickAdvancement(tag: str, slot:str) -> dict:
