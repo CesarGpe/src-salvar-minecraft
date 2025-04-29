@@ -9,10 +9,10 @@ data_pack:
 
 require:
   - bolt
+  - bookshelf.module.view
 
 pipeline:
   - mecha
-  - beet.contrib.load
   - setup
   - utils
   - damage
@@ -23,8 +23,6 @@ meta:
   bolt:
     entrypoint:
       - mc2:main
-  load:
-    data_pack: "bs.view"
   lsp:
     excluded_plugins:
       - setup
