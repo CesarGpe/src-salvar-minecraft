@@ -20,6 +20,7 @@
 			},
 			"minecraft:item_model": "mc2:rapier",
 			"minecraft:item_name": "Amethyst Saber",
+			"minecraft:custom_data": "{mc2.rapier:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"minecraft:max_stack_size": 1,
 			"minecraft:max_damage": 150,
 			"minecraft:damage": 0,

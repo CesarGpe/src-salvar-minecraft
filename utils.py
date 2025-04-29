@@ -36,7 +36,7 @@ def itemTickAdvancement(tag: str, slot:str) -> dict:
 							"predicate": {
 								"equipment": {
 									slot: {
-										"components": {
+										"predicates": {
 											"minecraft:custom_data": {
 												f"mc2.{tag}": True
 											}

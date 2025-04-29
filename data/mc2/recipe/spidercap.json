@@ -47,7 +47,7 @@
         "damage_on_hurt": false,
         "swappable": true
       },
-      "minecraft:custom_data": "{mc2.spidercap:true}",
+      "minecraft:custom_data": "{mc2.spidercap:true,smithed:{ignore:{functionality:true,crafting:true}}}",
       "!minecraft:jukebox_playable": {}
     }
   }

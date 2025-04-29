@@ -5,10 +5,15 @@
 	"experience": 0.15,
 	"ingredient": "minecraft:rotten_flesh",
 	"result": {
-		"id": "minecraft:cooked_cod",
+		"id": "minecraft:cooked_mutton",
 		"components": {
 			"minecraft:item_model": "mc2:jerky",
-			"minecraft:item_name": "Jerky"
+			"minecraft:item_name": "Jerky",
+			"minecraft:food": {
+				"nutrition": 5,
+				"saturation": 6
+			},
+			"minecraft:custom_data": "{mc2.jerky:true,smithed:{ignore:{functionality:true,crafting:true}}}"
 		}
 	}
 }

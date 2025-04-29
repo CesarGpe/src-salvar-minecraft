@@ -15,7 +15,7 @@
 		"components": {
 			"!minecraft:jukebox_playable": {},
 			"minecraft:max_damage": 20,
-			"minecraft:custom_data": "{mc2.boots_of_swiftness:true}",
+			"minecraft:custom_data": "{mc2.boots_of_swiftness:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"minecraft:damage": 0,
 			"minecraft:equippable": {
 				"slot": "feet",

@@ -33,4 +33,7 @@ def beet_default(ctx: Context):
 	for adv in ctx.data.advancements:
 		if adv.startswith("mc2:items/"):
 			ctx.data.functions["mc2:debug/reset_item_advancements"].append(f'advancement revoke @s only {adv}')
+
+	# Smithed
+	ctx.data.mcmeta.data["id"] = "save-minecraft"
 		

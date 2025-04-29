@@ -22,8 +22,8 @@
 #	playsound minecraft:entity.spider.death player @a ~ ~ ~ 1 0.8 0
 #	particle item{item:"spider_spawn_egg"} ~ ~1.8 ~ 0 0 0 0.1 15 normal
 
-function mc2:give/spidercap:
-	give @p minecraft:music_disc_11[item_name="Spider Cowl",max_stack_size=1,damage=0,max_damage=20,rarity=common,item_model="mc2:spider_cowl",lore=[{color:"gray",italic:false,text:"Grants night vision."},{color:"gray",italic:false,text:"Degrades with time."}],equippable={slot:"head",equip_sound:"entity.spider.step",asset_id:"mc2:spider_mask",camera_overlay:"minecraft:misc/spidercap_fx",dispensable:true,damage_on_hurt:false},custom_data={mc2.spidercap:true},!jukebox_playable] 1
+#function mc2:give/spidercap:
+#	give @p minecraft:music_disc_11[item_name="Spider Cowl",max_stack_size=1,damage=0,max_damage=20,rarity=common,item_model="mc2:spider_cowl",lore=[{color:"gray",italic:false,text:"Grants night vision."},{color:"gray",italic:false,text:"Degrades with time."}],equippable={slot:"head",equip_sound:"entity.spider.step",asset_id:"mc2:spider_mask",camera_overlay:"minecraft:misc/spidercap_fx",dispensable:true,damage_on_hurt:false},custom_data={mc2.spidercap:true},!jukebox_playable] 1
 
 predicate mc2:wearing_spidercap {
 	"condition": "minecraft:entity_properties",
@@ -31,7 +31,7 @@ predicate mc2:wearing_spidercap {
 	"predicate": {
 		"equipment": {
 			"head": {
-				"components": {
+				"predicates": {
 					"minecraft:custom_data": {
 						"mc2.spidercap": true
 					}
