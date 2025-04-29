@@ -61,13 +61,13 @@
 				{
 				  "add": false,
 				  "count": 1.0,
-					"function": "set_components",
+					"function": "minecraft:set_components",
 					  "components": {
 						"!minecraft:jukebox_playable": {},
 						"minecraft:rarity": "uncommon",
 						"minecraft:max_damage" : 50,
 						"minecraft:damage" : 0,
-						"minecraft:custom_data": "{mc2.udjat:true}",
+						"minecraft:custom_data": "{mc2.udjat:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 						"minecraft:item_model": "mc2:udjat",
 						"minecraft:item_name": "Gazing Artifact",
 						"minecraft:max_stack_size": 1,

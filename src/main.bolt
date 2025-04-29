@@ -10,6 +10,7 @@ import mc2:items/recovery_compass as module
 function mc2:load:
 	# THIS FUNCTION IS MODIFIED IN setup.py AND finish.py !!!!!
 	raw # Runs on reload, or just before loading the world
+	raw # gamerule doLimitedCrafting true
 	execute summon minecraft:marker:
 		execute store result storage mc2:storage data.world_spawn.x int 1 run data get entity @s Pos[0]
 		execute store result storage mc2:storage data.world_spawn.y int 1 run data get entity @s Pos[1]

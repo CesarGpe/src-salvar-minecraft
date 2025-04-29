@@ -2,21 +2,26 @@ import json
 from beet import Context, ItemModifier, LootTable
 
 def beet_default(ctx: Context):
-	# Use a set to store unique JSON-stringified entries
-	unique_entries = set()
+	# Initialize the LootTable structure
+	loot_table = {
+		"pools": []
+	}
 
-	# === PART 1: Add entries from mc2:* recipes ===
+	# Iterate over all mc2:* recipes
 	for key, recipe in ctx.data.recipes.items():
 		if not key.startswith("mc2"):
 			continue
-
+		
+		# Parse recipe JSON (in case it's returned as a string)
 		raw = recipe.get_content()
 		content = json.loads(raw) if isinstance(raw, str) else raw
 
+		# Extract the item name and components
 		result = content.get("result", {})
 		item_name = result.get("id")
 		components = result.get("components", {})
 
+		# Build the entry
 		entry = {
 			"type": "minecraft:item",
 			"name": item_name,
@@ -27,37 +32,12 @@ def beet_default(ctx: Context):
 				}
 			]
 		}
-
-		unique_entries.add(json.dumps(entry, sort_keys=True))
-
-	# === PART 2: Scan all loot tables for items with minecraft:custom_data ===
-	for key, lt in ctx.data.loot_tables.items():
-		raw = lt.get_content()
-		content = json.loads(raw) if isinstance(raw, str) else raw
-
-		pools = content.get("pools", [])
-		for pool in pools:
-			entries = pool.get("entries", [])
-			for entry in entries:
-				if entry.get("type") in {"minecraft:item", "item"}:
-					for func in entry.get("functions", []):
-						if func.get("function") in {"minecraft:set_components", "set_components"}:
-							components = func.get("components", {})
-							if "minecraft:custom_data" in components:
-								unique_entries.add(json.dumps(entry, sort_keys=True))
-								break
-
-	# === Assemble final loot table ===
-	loot_table = {
-		"pools": []
-	}
-
-	for entry_str in unique_entries:
-		entry = json.loads(entry_str)
+		# Build the pool
 		pool = {
-			"rolls": 1,
-			"entries": [entry]
-		}
+            "rolls": 1,
+            "entries": [entry]
+        }
+		# Add to the loot table
 		loot_table["pools"].append(pool)
 	
 	# Register the loot table

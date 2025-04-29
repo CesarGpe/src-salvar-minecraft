@@ -40,7 +40,13 @@
 				}
 			],
 			"minecraft:custom_data": {
-				"mc2.recovery_compass": true
+				"mc2.recovery_compass": true,
+				"smithed": {
+					"ignore": {
+						"functionality": true,
+						"crafting": true
+					}
+				}
 			}
 		}
 	}

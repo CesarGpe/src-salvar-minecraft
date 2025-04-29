@@ -204,12 +204,12 @@
             {
               "add": false,
               "count": 1.0,
-				"function": "set_components",
+				"function": "minecraft:set_components",
 				  "components": {
 					"!minecraft:jukebox_playable": {},
 					"minecraft:rarity": "uncommon",
 					"!minecraft:enchantable" : {},
-					"minecraft:custom_data": "{mc2.blueprint_crossbow:true}",
+					"minecraft:custom_data": "{mc2.blueprint_crossbow:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 					"minecraft:item_model": "mc2:blueprint_crossbow",
 					"minecraft:item_name": "Crossbow Blueprint",
 					"minecraft:max_stack_size": 1,

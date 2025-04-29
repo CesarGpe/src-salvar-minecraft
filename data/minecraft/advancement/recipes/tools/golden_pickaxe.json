@@ -6,7 +6,7 @@
       "conditions": {
 		  "item":{
 			 "components":{
-			"minecraft:custom_data": "{mc2.blueprint_pickaxe:true}"
+			"minecraft:custom_data": "{mc2.blueprint_pickaxe:true,smithed:{ignore:{functionality:true,crafting:true}}}"
 			}		  
 		}
       }
