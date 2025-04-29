@@ -18,11 +18,18 @@ pipeline:
   - damage
   - jsons
   - finish
+  - beet.contrib.format_json
 
 meta:
+
   bolt:
     entrypoint:
       - mc2:main
+
+  format_json:
+    indent: 4
+    sort_keys: true
+
   lsp:
     excluded_plugins:
       - setup
@@ -30,5 +37,6 @@ meta:
       - damage
       - jsons
       - finish
+      - beet.contrib.format_json
 
 output: bin
