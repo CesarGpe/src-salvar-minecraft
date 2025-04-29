@@ -4,8 +4,8 @@ from beet import Context, Function
 
 def beet_default(ctx: Context):
     scoreboard(ctx, "utils", "durability", "dummy")
-    ctx.data.functions["mc2:utils/damage_macro"] = Function(['$item modify entity @s $(slot) {"function": "minecraft:set_components","components": {"minecraft:damage": $(damage)}}'])
-    ctx.data.functions["mc2:utils/tp_macro"] = Function(['$tp @s $(x) $(y) $(z)'])
+    ctx.data.functions["mc2:utils/damage_macro"] = Function('$item modify entity @s $(slot) {"function": "minecraft:set_components","components": {"minecraft:damage": $(damage)}}')
+    ctx.data.functions["mc2:utils/tp_macro"] = Function('$tp @s $(x) $(y) $(z)')
     
 def damageItem(SLOT:str, AMOUNT=1) -> Function:
 	DAMAGE = "mc2.utils.durability"
