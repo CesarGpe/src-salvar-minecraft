@@ -2,6 +2,9 @@ import json
 from beet import Context, ItemModifier, LootTable
 
 def beet_default(ctx: Context):
+	pass
+
+def creative_menu(ctx: Context):
 	# Use a set to store unique JSON-stringified entries
 	unique_entries = set()
 
@@ -39,7 +42,7 @@ def beet_default(ctx: Context):
 			for entry in entries:
 				if entry.get("type") in {"minecraft:item", "item"}:
 					for func in entry.get("functions", []):
-						if func.get("function") in {"minecraft:set_components"}:
+						if func.get("function") in {"minecraft:set_components", "set_components"}:
 							components = func.get("components", {})
 							if "minecraft:custom_data" in components:
 								unique_entries.add(json.dumps(entry, sort_keys=True))
@@ -55,10 +58,31 @@ def beet_default(ctx: Context):
 					return components["minecraft:item_name"].lower()
 		# Fallback to the item id (like minecraft:diamond_sword)
 		return entry_dict.get("name", "").lower()
+	
+	def normalize_entry(entry):
+		# Ensure type is fully qualified
+		if entry.get("type") == "item":
+			entry["type"] = "minecraft:item"
+
+		# Normalize and clean functions
+		functions = entry.get("functions", [])
+		for func in functions:
+			if func.get("function") == "set_components":
+				func["function"] = "minecraft:set_components"
+
+			# Remove unnecessary keys inside functions
+			if func.get("function") == "minecraft:set_components":
+				func.pop("add", None)
+				func.pop("count", None)
+
+		# Remove top-level keys that aren't needed
+		entry.pop("weight", None)
+
+		return entry
 
 	# Parse back into list of dicts
 	sorted_entries = sorted(
-		(json.loads(entry_str) for entry_str in unique_entries),
+		(normalize_entry(json.loads(entry_str)) for entry_str in unique_entries),
 		key=sort_key
 	)
 
@@ -75,8 +99,13 @@ def beet_default(ctx: Context):
 		loot_table["pools"].append(pool)
 
 	# Register the loot table
-	ctx.data.loot_tables["mc2:creative_loot_table"] = LootTable(loot_table)
+	ctx.data.loot_tables["mc2:creative_loot_table"] = LootTable(
+		_content = loot_table,
+		serializer = lambda d: json.dumps(d, indent=4, sort_keys=True),
+		deserializer = json.loads
+	)
 
+def item_modifier(ctx: Context):
 	# Testing
 	""" for k, v in ctx.data.item_modifiers.items():
 		if k.startswith("mc2"):

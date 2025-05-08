@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:bee",
+	"minecraft:creeper",
+    "minecraft:endermite",
+    "minecraft:ghast",
+    "minecraft:silverfish",
+    "minecraft:sniffer",
+    "minecraft:spider",
+    "minecraft:cave_spider"
+  ]
+}

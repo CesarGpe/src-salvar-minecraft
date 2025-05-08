@@ -1,4 +1,4 @@
-from utils import damageItem
+from mc2:utils import damageItem
 
 MATH = "mc2.recovery_compass.math"
 CAN_TP = "mc2.recovery_compass.can_tp"

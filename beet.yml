@@ -16,7 +16,8 @@ pipeline:
   - setup
   - utils
   - damage
-  - jsons
+  - jsons.creative_menu
+  - jsons.item_modifier
   - finish
   - beet.contrib.format_json
 
@@ -35,7 +36,8 @@ meta:
       - setup
       - utils
       - damage
-      - jsons
+      - jsons.creative_menu
+      - jsons.item_modifier
       - finish
       - beet.contrib.format_json
 

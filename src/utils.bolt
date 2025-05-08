@@ -1,0 +1,55 @@
+import re
+
+function mc2:utils/damage_macro:
+	$item modify entity @s $(slot) {"function": "minecraft:set_components","components": {"minecraft:damage": $(damage)}}
+
+function mc2:utils/tp_macro:
+	$tp @s $(x) $(y) $(z)
+
+def damageItem(SLOT:str, AMOUNT=1):
+	DAMAGE = "mc2.utils.durability"
+	DATA_SLOT = slot_to_nbt_path(SLOT)
+
+    # For the first damage proc, damage component could not be present yet
+    execute unless data entity @s f'{DATA_SLOT}.components."minecraft:damage"' run return run item modify entity @s SLOT {"function":"minecraft:set_components","components":{"minecraft:damage":AMOUNT}}
+
+	# Get durability, add, then damage the item
+	execute store result score @s DAMAGE run data get entity @s f'{DATA_SLOT}.components."minecraft:damage"'
+	execute store result storage mc2:storage data.utils.damage int 1 run scoreboard players add @s DAMAGE AMOUNT
+
+	data modify storage mc2:storage data.utils merge value {slot:SLOT}
+	function mc2:utils/damage_macro with storage mc2:storage data.utils
+
+def slot_to_nbt_path(identifier: str) -> str:
+    # Convert slot identifiers like 'armor.chest', 'weapon.mainhand', 'inventory.0',
+    # 'hotbar.3', 'weapon.offhand' to NBT path strings for /data commands.
+    identifier = identifier.lower()
+    mapping = {
+        'armor.head': 'equipment.head',
+        'armor.chest': 'equipment.chest',
+        'armor.legs': 'equipment.legs',
+        'armor.feet': 'equipment.feet',
+        'weapon.mainhand': 'SelectedItem',
+        'weapon.offhand': 'equipment.offhand',
+    }
+    
+    # Direct mapping
+    if identifier in mapping:
+        return mapping[identifier]
+    
+    # Hotbar slots: hotbar.0 - hotbar.8
+    hotbar_match = re.match(r'hotbar\.(\d+)', identifier)
+    if hotbar_match:
+        idx = int(hotbar_match.group(1))
+        if 0 <= idx <= 8:
+            return f'Inventory[{{Slot:{idx}b}}]'
+    
+    # Inventory slots: inventory.0 - inventory.26 (maps to slots 9-35)
+    inv_match = re.match(r'inventory\.(\d+)', identifier)
+    if inv_match:
+        idx = int(inv_match.group(1))
+        if 0 <= idx <= 26:
+            slot_idx = 9 + idx
+            return f'Inventory[{{Slot:{slot_idx}b}}]'
+    
+    raise ValueError(f"Unknown slot identifier: '{identifier}'")

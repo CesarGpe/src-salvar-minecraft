@@ -2,17 +2,17 @@ from utils import itemTickAdvancement
 RESULT = "mc2.tinker_goggles.temp"
 
 advancement mc2:items/tinker_goggles/tick_head itemTickAdvancement("tinker_goggles", "head")
-function mc2:items/tinker_goggles/tick:
+function mc2:items/tinker_goggles/tick_head:
 	scoreboard players set @s RESULT 0
 	function #bs.view:at_aimed_block {run:"function mc2:items/tinker_goggles/check_block",with:{max_distance:5}}
-	execute if score @s RESULT matches 1 run return run advancement revoke @s only mc2:items/tinker_goggles/tick
+	execute if score @s RESULT matches 1 run return run advancement revoke @s only mc2:items/tinker_goggles/tick_head
 
 	# Player coords
 	execute store result score @s mc2.tinker_goggles.coords.x run data get entity @s Pos[0]
 	execute store result score @s mc2.tinker_goggles.coords.y run data get entity @s Pos[1]
 	execute store result score @s mc2.tinker_goggles.coords.z run data get entity @s Pos[2]
 	title @s actionbar ["",{"text":"XYZ: ","color":"gold"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.x"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.y"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.tinker_goggles.coords.z"}}]
-	advancement revoke @s only mc2:items/tinker_goggles/tick
+	advancement revoke @s only mc2:items/tinker_goggles/tick_head
 
 function mc2:items/tinker_goggles/check_block:
 	for i in range(16):
