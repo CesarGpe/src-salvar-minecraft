@@ -1,5 +1,5 @@
-import json
-from beet import Context, ItemModifier, LootTable
+import re, json
+from beet import Context, ItemModifier, JsonFile, LootTable
 
 def beet_default(ctx: Context):
 	pass
@@ -86,7 +86,7 @@ def creative_menu(ctx: Context):
 		key=sort_key
 	)
 
-	# === Assemble final loot table ===
+	# === Assemble and register the master loot table ===
 	loot_table = {
 		"pools": []
 	}
@@ -98,20 +98,66 @@ def creative_menu(ctx: Context):
 		}
 		loot_table["pools"].append(pool)
 
-	# Register the loot table
 	ctx.data.loot_tables["mc2:creative_loot_table"] = LootTable(
 		_content = loot_table,
 		serializer = lambda d: json.dumps(d, indent=4, sort_keys=True),
 		deserializer = json.loads
 	)
 
-def item_modifier(ctx: Context):
+	# === Generate per-item loot tables ===
+	def to_snake_case(name: str) -> str:
+		return re.sub(r'\s+', '_', name.strip().lower())
+	for entry in sorted_entries:
+		item_name:str = None
+		for func in entry.get("functions", []):
+			if func.get("function") == "minecraft:set_components":
+				components = func.get("components", {})
+				item_name = components.get("minecraft:item_name")
+				break
+
+		if item_name:
+			single_entry_loot_table = {
+				"pools": [{
+					"rolls": 1,
+					"entries": [entry]
+				}]
+			}
+
+			ctx.data.loot_tables[f"mc2:item/{to_snake_case(item_name)}"] = LootTable(
+				_content = single_entry_loot_table,
+				serializer = lambda d: json.dumps(d, indent=4, sort_keys=True),
+				deserializer = json.loads
+			)
+
+def change_components(ctx: Context):
 	# Testing
 	""" for k, v in ctx.data.item_modifiers.items():
 		if k.startswith("mc2"):
 			print("#", k)
 			print(v)
 			print() """
+	
+	for key, recipe in ctx.data.recipes.items():
+		if not key.startswith("minecraft:"):
+			continue
+
+		raw = recipe.get_content()
+		content = json.loads(raw) if isinstance(raw, str) else raw
+
+		result = content.get("result", {})
+		components = result.get("components")
+		if components:
+			item_id = result.get("id")
+			if not item_id:
+				continue
+
+			output = {
+				"targets": item_id,
+				"components": components
+			}
+			file_name = item_id.split(":", 1)[-1]
+			output_path = f"data/mc2/item_components/{file_name}.json"
+			ctx.data.extra[output_path] = JsonFile(output)
 
 	# Get components from the parsed contents of the recovery compass recipe
 	raw = ctx.data.recipes["minecraft:recovery_compass"].get_content()

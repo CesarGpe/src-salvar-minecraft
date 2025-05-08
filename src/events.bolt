@@ -27,7 +27,7 @@ advancement mc2:event/inventory_changed {
 function mc2:event/inventory_changed:
 	for i in range(54):
 		slot = f"container.{i}"
-		execute if items entity @s slot *[minecraft:max_damage] run item modify entity @s slot {"function":"minecraft:set_components","components":{"minecraft:repair_cost":5}}
+		execute if predicate mc2:in_survival if items entity @s slot *[minecraft:max_damage] run item modify entity @s slot {"function":"minecraft:set_components","components":{"minecraft:repair_cost":5}}
 	advancement revoke @s only mc2:event/inventory_changed
 
 advancement mc2:event/brushed_armadillo {
