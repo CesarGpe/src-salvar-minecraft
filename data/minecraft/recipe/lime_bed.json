@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "group": "bed",
-  "key": {
-    "#": "minecraft:lime_wool",
-    "X": "minecraft:hay_block"
-  },
-  "pattern": [
-    "###",
-    "XXX"
-  ],
-  "result": {
-    "count": 1,
-    "id": "minecraft:lime_bed"
-  }
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"group": "bed",
+	"key": {
+		"#": "minecraft:lime_wool",
+		"X": "minecraft:hay_block"
+	},
+	"pattern": [
+		"###",
+		"XXX"
+	],
+	"result": {
+		"count": 1,
+		"id": "minecraft:lime_bed"
+	}
 }

@@ -1,24 +1,24 @@
 {
-  "replace": false,
-  "values": [
-    "minecraft:bamboo",
-    "minecraft:beetroots",
-    "minecraft:cactus",
-    "minecraft:chorus_flower",
-    "minecraft:cocoa",
-    "minecraft:weeping_vines",
-    "minecraft:twisting_vines",
-    "minecraft:kelp",
-    "minecraft:mangrove_propagule",
-    "minecraft:nether_wart",
-    "minecraft:pitcher_crop",
-    "minecraft:melon_stem",
-    "minecraft:pumpkin_stem",
-    "minecraft:sugar_cane",
-    "minecraft:sweet_berry_bush",
-    "minecraft:torchflower_crop",
-    "minecraft:wheat",
-    "minecraft:carrots",
-    "minecraft:potatoes"
-  ]
+	"replace": false,
+	"values": [
+		"minecraft:bamboo",
+		"minecraft:beetroots",
+		"minecraft:cactus",
+		"minecraft:chorus_flower",
+		"minecraft:cocoa",
+		"minecraft:weeping_vines",
+		"minecraft:twisting_vines",
+		"minecraft:kelp",
+		"minecraft:mangrove_propagule",
+		"minecraft:nether_wart",
+		"minecraft:pitcher_crop",
+		"minecraft:melon_stem",
+		"minecraft:pumpkin_stem",
+		"minecraft:sugar_cane",
+		"minecraft:sweet_berry_bush",
+		"minecraft:torchflower_crop",
+		"minecraft:wheat",
+		"minecraft:carrots",
+		"minecraft:potatoes"
+	]
 }

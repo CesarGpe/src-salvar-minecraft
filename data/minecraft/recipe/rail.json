@@ -1,18 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-	  "category": "misc",
-    "key": {
-        "i": "minecraft:stick",
-        "B": "minecraft:copper_ingot"
-    },
-	    "pattern": [
-        "B B",
-        "BiB",
-        "B B"
-    ],
-    "result": {
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"i": "minecraft:stick",
+		"B": "minecraft:copper_ingot"
+	},
+	"pattern": [
+		"B B",
+		"BiB",
+		"B B"
+	],
+	"result": {
 		"count": 16,
-        "id": "minecraft:rail"
-    }
+		"id": "minecraft:rail"
+	}
 }
-	

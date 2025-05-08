@@ -1,9 +1,9 @@
 {
-"replace" : true,
-  "values": [
-    "#minecraft:needs_diamond_tool",
-    "#minecraft:needs_iron_tool",
-    "#minecraft:needs_stone_tool",
-	"#mc2:needs_gold_tool"
-  ]
+	"replace": true,
+	"values": [
+		"#minecraft:needs_diamond_tool",
+		"#minecraft:needs_iron_tool",
+		"#minecraft:needs_stone_tool",
+		"#mc2:needs_gold_tool"
+	]
 }

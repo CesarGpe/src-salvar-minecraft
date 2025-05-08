@@ -1,6 +1,6 @@
 {
-		"replace": true,
-  "values": [
-    "minecraft:soul_campfire"
-  ]
+	"replace": true,
+	"values": [
+		"minecraft:soul_campfire"
+	]
 }

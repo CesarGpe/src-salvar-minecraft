@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": "#minecraft:logs",
-    "X": "minecraft:furnace",
-	"-": "minecraft:campfire",
-	"o": "minecraft:iron_ingot"
-  },
-  "pattern": [
-    "#o#",
-    "oXo",
-    "#-#"
-  ],
-  "result": {
-    "count": 1,
-    "id": "minecraft:smoker"
-  }
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": "#minecraft:logs",
+		"X": "minecraft:furnace",
+		"-": "minecraft:campfire",
+		"o": "minecraft:iron_ingot"
+	},
+	"pattern": [
+		"#o#",
+		"oXo",
+		"#-#"
+	],
+	"result": {
+		"count": 1,
+		"id": "minecraft:smoker"
+	}
 }
