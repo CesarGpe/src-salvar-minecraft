@@ -128,19 +128,6 @@ function mc2:items/recovery_compass/end_tp:
 	attribute @s minecraft:jump_strength modifier remove mc2:recovery_compass
 	scoreboard players set @s COOLDOWN 60
 
-# Check every single slot for a compass to modify (thank you john minecraft)
-function mc2:items/recovery_compass/replace:
-	execute if items entity @s player.cursor minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s player.cursor mc2:change_recovery_compass
-	execute if items entity @s weapon.mainhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.mainhand mc2:change_recovery_compass
-	execute if items entity @s weapon.offhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.offhand mc2:change_recovery_compass
-	for i in range(27):
-		slot = f"inventory.{i}"
-		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
-	for i in range(9):
-		slot = f"hotbar.{i}"
-		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
-	advancement revoke @s only mc2:items/recovery_compass/replace
-
 # Advancement to detect the right click
 advancement mc2:items/recovery_compass/use {
 	"criteria": {
@@ -174,24 +161,15 @@ advancement mc2:items/recovery_compass/cd {
 	}
 }
 
-# Advancement to replace any unchanged vanilla compasses
-advancement mc2:items/recovery_compass/replace {
-	"criteria": {
-		"requirement": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"items": "minecraft:recovery_compass",
-						"components": {
-							"minecraft:max_stack_size": 64
-						}
-					}
-				]
-			}
-		}
-	},
-	"rewards": {
-		"function": "mc2:items/recovery_compass/replace"
-	}
-}
+# Check every single slot for a compass to modify (thank you john minecraft)
+#function mc2:items/recovery_compass/replace:
+#	execute if items entity @s player.cursor minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s player.cursor mc2:change_recovery_compass
+#	execute if items entity @s weapon.mainhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.mainhand mc2:change_recovery_compass
+#	execute if items entity @s weapon.offhand minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s weapon.offhand mc2:change_recovery_compass
+#	for i in range(27):
+#		slot = f"inventory.{i}"
+#		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
+#	for i in range(9):
+#		slot = f"hotbar.{i}"
+#		execute if items entity @s slot minecraft:recovery_compass[!minecraft:custom_data] run item modify entity @s slot mc2:change_recovery_compass
+#	advancement revoke @s only mc2:items/recovery_compass/replace

@@ -37,7 +37,7 @@
 				{
 					"color": "gray",
 					"italic": false,
-					"text": "Shows useful block information."
+					"text": "Shows coordinates and block information."
 				}
 			],
 			"minecraft:equippable": {

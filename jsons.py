@@ -130,13 +130,7 @@ def creative_menu(ctx: Context):
 			)
 
 def change_components(ctx: Context):
-	# Testing
-	""" for k, v in ctx.data.item_modifiers.items():
-		if k.startswith("mc2"):
-			print("#", k)
-			print(v)
-			print() """
-	
+	# Generate default component jsons
 	for key, recipe in ctx.data.recipes.items():
 		if not key.startswith("minecraft:"):
 			continue
@@ -159,12 +153,18 @@ def change_components(ctx: Context):
 			output_path = f"data/mc2/item_components/{file_name}.json"
 			ctx.data.extra[output_path] = JsonFile(output)
 
-	# Get components from the parsed contents of the recovery compass recipe
-	raw = ctx.data.recipes["minecraft:recovery_compass"].get_content()
+	# Build an item modifier with the components from the recovery compass recipe
+	""" raw = ctx.data.recipes["minecraft:recovery_compass"].get_content()
 	content = json.loads(raw)
 	components = content.get("result", {}).get("components", {})
 
-	# Build an item modifier with the components of the recipe
 	new_modifier = dict({"function": "minecraft:set_components"})
 	new_modifier["components"] = components
-	ctx.data.item_modifiers["mc2:change_recovery_compass"] = ItemModifier(new_modifier)
+	ctx.data.item_modifiers["mc2:change_recovery_compass"] = ItemModifier(new_modifier) """
+
+	# Testing
+	""" for k, v in ctx.data.item_modifiers.items():
+		if k.startswith("mc2"):
+			print("#", k)
+			print(v)
+			print() """

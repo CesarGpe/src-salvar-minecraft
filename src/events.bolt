@@ -10,7 +10,7 @@ advancement mc2:event/slept_in_bed {
 }
 
 function mc2:event/slept_in_bed:
-	effect give @s minecraft:hunger 5 190 true
+	effect give @s minecraft:hunger 2 206 true
 	advancement revoke @s only mc2:event/slept_in_bed
 
 advancement mc2:event/inventory_changed {

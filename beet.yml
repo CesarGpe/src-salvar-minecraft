@@ -36,9 +36,9 @@ meta:
       - setup
       - utils
       - damage
+      - finish
       - jsons.creative_menu
       - jsons.change_components
-      - finish
       - beet.contrib.format_json
 
 output: bin
