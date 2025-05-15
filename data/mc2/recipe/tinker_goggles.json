@@ -45,7 +45,7 @@
 				"equip_sound": "minecraft:item.armor.equip_iron",
 				"asset_id": "mc2:redstone_goggles",
 				"damage_on_hurt": true,
-				"camera_overlay": "minecraft:misc/tinker_goggles_fx",
+				"camera_overlay": "mc2:overlay/tinker_goggles",
 				"dispensable": true
 			},
 			"minecraft:custom_data": "{mc2.tinker_goggles:true,smithed:{ignore:{functionality:true,crafting:true}}}",

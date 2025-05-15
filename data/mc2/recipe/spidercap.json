@@ -42,7 +42,7 @@
 				"slot": "head",
 				"equip_sound": "entity.spider.step",
 				"asset_id": "mc2:spider_mask",
-				"camera_overlay": "minecraft:misc/spidercap_fx",
+				"camera_overlay": "mc2:overlay/spidercap",
 				"damage_on_hurt": false,
 				"swappable": true
 			},
