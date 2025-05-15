@@ -2,7 +2,9 @@ import re, json
 from beet import Context, ItemModifier, JsonFile, LootTable
 
 def beet_default(ctx: Context):
-	pass
+	print("Dummy!")
+def to_snake_case(name: str) -> str:
+		return re.sub(r'\s+', '_', name.strip().lower())
 
 def creative_menu(ctx: Context):
 	# Use a set to store unique JSON-stringified entries
@@ -57,7 +59,10 @@ def creative_menu(ctx: Context):
 				if "minecraft:item_name" in components:
 					return components["minecraft:item_name"].lower()
 		# Fallback to the item id (like minecraft:diamond_sword)
-		return entry_dict.get("name", "").lower()
+		name = entry_dict.get("name", "").lower()
+		if ":" in name:
+			name = name.split(":", 1)[1]  # Remove namespace prefix
+		return name
 	
 	def normalize_entry(entry):
 		# Ensure type is fully qualified
@@ -105,8 +110,6 @@ def creative_menu(ctx: Context):
 	)
 
 	# === Generate per-item loot tables ===
-	def to_snake_case(name: str) -> str:
-		return re.sub(r'\s+', '_', name.strip().lower())
 	for entry in sorted_entries:
 		item_name:str = None
 		for func in entry.get("functions", []):
@@ -114,6 +117,11 @@ def creative_menu(ctx: Context):
 				components = func.get("components", {})
 				item_name = components.get("minecraft:item_name")
 				break
+
+		# If item_name was not found in components, use the fallback from entry["name"]
+		if not item_name:
+			raw_name = entry.get("name", "")
+			item_name = raw_name.removeprefix("minecraft:")
 
 		if item_name:
 			single_entry_loot_table = {

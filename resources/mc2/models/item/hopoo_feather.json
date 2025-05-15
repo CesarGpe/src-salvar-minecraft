@@ -1,0 +1,18 @@
+{
+	"parent": "item/handheld",
+	"textures":{
+		"layer0": "mc2:item/hopoo_feather"	
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [ -80, 270, -10 ],
+            "translation": [ 0, 2, 0 ],
+			"scale": [ 0.7, 0.7, 0.7 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [ -80, -270, 10 ],
+            "translation": [ 0, 2, 0 ],
+			"scale": [ 0.7, 0.7, 0.7 ]
+		}
+	}
+}

@@ -56,14 +56,14 @@
 				{
 					"type": "item",
 					"weight": 2,
-					"name": "minecraft:music_disc_11",
+					"name": "minecraft:poisonous_potato",
 					"functions": [
 						{
 							"add": false,
 							"count": 1.0,
 							"function": "minecraft:set_components",
 							"components": {
-								"!minecraft:jukebox_playable": {},
+								"!minecraft:consumable": {},
 								"minecraft:rarity": "uncommon",
 								"minecraft:max_damage": 50,
 								"minecraft:damage": 0,

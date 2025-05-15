@@ -20,7 +20,7 @@
 		]
 	},
 	"result": {
-		"id": "minecraft:music_disc_11",
+		"id": "minecraft:poisonous_potato",
 		"components": {
 			"minecraft:item_name": "NaviGoggles",
 			"minecraft:max_stack_size": 1,
@@ -49,7 +49,7 @@
 				"dispensable": true
 			},
 			"minecraft:custom_data": "{mc2.tinker_goggles:true,smithed:{ignore:{functionality:true,crafting:true}}}",
-			"!minecraft:jukebox_playable": {}
+			"!minecraft:consumable": {}
 		}
 	}
 }

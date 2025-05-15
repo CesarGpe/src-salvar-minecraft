@@ -6,6 +6,9 @@ function mc2:utils/damage_macro:
 function mc2:utils/tp_macro:
 	$tp @s $(x) $(y) $(z)
 
+function mc2:utils/spreadplayers_macro:
+	$spreadplayers $(x) $(z) 0 8 false @s
+
 def damageItem(SLOT:str, AMOUNT=1):
 	DAMAGE = "mc2.utils.durability"
 	DATA_SLOT = slot_to_nbt_path(SLOT)

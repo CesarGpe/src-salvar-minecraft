@@ -7,6 +7,14 @@ data_pack:
     - data/mc2/modules: src
     - pack.png: zpack.png
 
+resource_pack:
+  name: texturepack
+  pack_format: 55
+  description: "yo cuando poggers: poggers"
+  load:
+    - assets: resources
+    - pack.png: zpack2.png
+
 require:
   - bolt
   - bookshelf.module.view

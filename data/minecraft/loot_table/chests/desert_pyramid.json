@@ -259,14 +259,14 @@
 				{
 					"type": "item",
 					"weight": 1,
-					"name": "minecraft:music_disc_13",
+					"name": "minecraft:poisonous_potato",
 					"functions": [
 						{
 							"add": false,
 							"count": 1.0,
 							"function": "minecraft:set_components",
 							"components": {
-								"!minecraft:jukebox_playable": {},
+								"!minecraft:consumable": {},
 								"minecraft:repairable": {
 									"items": [
 										"minecraft:phantom_membrane"

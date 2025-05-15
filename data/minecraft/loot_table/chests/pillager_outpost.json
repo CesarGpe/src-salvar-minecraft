@@ -206,7 +206,6 @@
 							"count": 1.0,
 							"function": "minecraft:set_components",
 							"components": {
-								"!minecraft:jukebox_playable": {},
 								"minecraft:rarity": "uncommon",
 								"!minecraft:enchantable": {},
 								"minecraft:custom_data": "{mc2.blueprint_crossbow:true,smithed:{ignore:{functionality:true,crafting:true}}}",

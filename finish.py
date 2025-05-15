@@ -26,7 +26,7 @@ def beet_default(ctx: Context):
 
 	# Tick function
 	for sc in REDUCEABLE:
-		ctx.data.functions["mc2:tick"].append(f'execute as @a[scores={{{sc}=1..}}] run scoreboard players remove @s {sc} 1')
+		ctx.data.functions["mc2:player_tick"].append(f'execute if score @s {sc} matches 1.. run scoreboard players remove @s {sc} 1')
             
 	# Debug: reset item advancements
 	ctx.data.functions["mc2:debug/reset_item_advancements"] = Function('')

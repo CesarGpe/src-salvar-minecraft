@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures":{
+		"layer0": "mc2:item/blueprint_pickaxe"	
+	}
+}

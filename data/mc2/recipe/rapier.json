@@ -11,9 +11,9 @@
 		"e": "minecraft:copper_ingot"
 	},
 	"result": {
-		"id": "minecraft:music_disc_13",
+		"id": "minecraft:poisonous_potato",
 		"components": {
-			"!minecraft:jukebox_playable": {},
+			"!minecraft:consumable": {},
 			"minecraft:rarity": "common",
 			"!minecraft:enchantable": {
 				"value": 15
@@ -65,9 +65,18 @@
 						"correct_for_drops": true
 					},
 					{
+						"blocks": "#minecraft:sword_efficient",
+						"speed": 1.5
+					},
+					{
 						"blocks": "minecraft:vine",
 						"speed": 2,
 						"correct_for_drops": true
+					},
+					{
+						"blocks": "#minecraft:leaves",
+						"speed": 2,
+						"correct_for_drops": false
 					},
 					{
 						"blocks": "minecraft:bamboo",
@@ -75,29 +84,9 @@
 						"correct_for_drops": true
 					},
 					{
-						"blocks": "minecraft:pumpkin",
-						"speed": 1.5,
+						"blocks": "minecraft:bamboo_sapling",
+						"speed": 10,
 						"correct_for_drops": true
-					},
-					{
-						"blocks": "minecraft:carved_pumpkin",
-						"speed": 1.5,
-						"correct_for_drops": true
-					},
-					{
-						"blocks": "minecraft:melon",
-						"speed": 1.5,
-						"correct_for_drops": true
-					},
-					{
-						"blocks": "minecraft:jack_o_lantern",
-						"speed": 1.5,
-						"correct_for_drops": true
-					},
-					{
-						"blocks": "#minecraft:leaves",
-						"speed": 2,
-						"correct_for_drops": false
 					}
 				],
 				"damage_per_block": 2,

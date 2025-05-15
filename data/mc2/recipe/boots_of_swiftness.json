@@ -11,9 +11,9 @@
 		"B": "minecraft:feather"
 	},
 	"result": {
-		"id": "minecraft:music_disc_13",
+		"id": "minecraft:poisonous_potato",
 		"components": {
-			"!minecraft:jukebox_playable": {},
+			"!minecraft:consumable": {},
 			"minecraft:repairable": {
 				"items": [
 					"minecraft:phantom_membrane"

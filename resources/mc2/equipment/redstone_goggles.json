@@ -1,0 +1,9 @@
+{
+	"layers":{
+		"humanoid":[
+			{
+				"texture": "mc2:redstone_goggles"
+			}
+		]
+	}
+}
