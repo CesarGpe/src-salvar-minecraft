@@ -18,7 +18,6 @@ function mc2:load:
 		kill @s
 
 function mc2:tick:
-	# THIS FUNCTION IS MODIFIED IN finish.py !!!!!
 	raw # Runs every game tick
 	raw # 1 irl second = 20 game ticks
 	execute as @a at @s run function mc2:player_tick

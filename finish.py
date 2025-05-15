@@ -18,7 +18,7 @@ def beet_default(ctx: Context):
 	ctx.data.functions["mc2:load"].append('tellraw @a "Datapacks loaded!"')
 
 	# Uninstall function
-	ctx.data.functions["mc2:uninstall"] = Function('data remove storage mc2:storage data')
+	ctx.data.functions["mc2:uninstall"] = Function(['# Generated function','data remove storage mc2:storage data'])
 	for sc in collect_values(SCOREBOARDS):
 		ctx.data.functions["mc2:uninstall"].append(f'scoreboard objectives remove {sc}')
 	for sch in SCHEDULES:
@@ -29,7 +29,7 @@ def beet_default(ctx: Context):
 		ctx.data.functions["mc2:player_tick"].append(f'execute if score @s {sc} matches 1.. run scoreboard players remove @s {sc} 1')
             
 	# Debug: reset item advancements
-	ctx.data.functions["mc2:debug/reset_item_advancements"] = Function('')
+	ctx.data.functions["mc2:debug/reset_item_advancements"] = Function('# Generated function')
 	for adv in ctx.data.advancements:
 		if adv.startswith("mc2:items/"):
 			ctx.data.functions["mc2:debug/reset_item_advancements"].append(f'advancement revoke @s only {adv}')

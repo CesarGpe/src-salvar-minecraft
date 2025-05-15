@@ -1,5 +1,5 @@
 import re, json
-from beet import Context, ItemModifier, JsonFile, LootTable
+from beet import Context, JsonFile, LootTable, Model, ItemModel, Equipment
 
 def beet_default(ctx: Context):
 	print("Dummy!")
@@ -137,7 +137,7 @@ def creative_menu(ctx: Context):
 				deserializer = json.loads
 			)
 
-def change_components(ctx: Context):
+def components(ctx: Context):
 	# Generate default component jsons
 	for key, recipe in ctx.data.recipes.items():
 		if not key.startswith("minecraft:"):
@@ -176,3 +176,34 @@ def change_components(ctx: Context):
 			print("#", k)
 			print(v)
 			print() """
+	
+def models(ctx: Context):
+	for tex in ctx.assets.textures:
+		# Equipment
+		if tex.startswith(f"mc2:entity/equipment/humanoid/"):
+			_, name = tex.split("mc2:entity/equipment/humanoid/")
+			val = f"mc2:{name}"
+			ctx.assets.equipments[val] = Equipment({
+				"layers": {
+					"humanoid": [
+						{
+							"texture": val
+						}
+					]
+				}
+			})
+		# Items
+		if tex.startswith(f"mc2:item/"):
+			_, name = tex.split('/')
+			""" ctx.assets.models[f"mc2:item/{name}"] = Model({
+				"parent": "item/handheld",
+				"textures": {
+					"layer0": tex
+				}
+			}) """
+			ctx.assets.item_models[f"mc2:{name}"] = ItemModel({
+				"model" : {
+					"type" : "model",
+					"model" : tex	
+				}
+			})
