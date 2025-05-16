@@ -28,8 +28,8 @@ def beet_default(ctx: Context):
 	scoreboard(ctx, "recovery_compass", "timer", "dummy")
 	scoreboard(ctx, "recovery_compass", "use", "dummy")
 
-	scoreboard(ctx, "tinker_goggles", "coords.x", "dummy")
-	scoreboard(ctx, "tinker_goggles", "coords.y", "dummy")
-	scoreboard(ctx, "tinker_goggles", "coords.z", "dummy")
-	scoreboard(ctx, "tinker_goggles", "temp", "dummy")
+	scoreboard(ctx, "navigoggles", "coords.x", "dummy")
+	scoreboard(ctx, "navigoggles", "coords.y", "dummy")
+	scoreboard(ctx, "navigoggles", "coords.z", "dummy")
+	scoreboard(ctx, "navigoggles", "temp", "dummy")
 		

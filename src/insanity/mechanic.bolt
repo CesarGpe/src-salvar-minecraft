@@ -1,0 +1,6 @@
+function ./spawn_phantom:
+	execute summon minecraft:marker:
+		spreadplayers ~ ~ 8 8 false @s
+		tp @s ~ ~20 ~
+		execute at @s run summon phantom
+		kill @s

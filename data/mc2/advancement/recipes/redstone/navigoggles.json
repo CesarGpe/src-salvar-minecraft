@@ -1,11 +1,11 @@
 {
 	"parent": "minecraft:recipes/root",
 	"criteria": {
-		"obsidian": {
+		"has_copper": {
 			"conditions": {
 				"items": [
 					{
-						"items": "minecraft:obsidian"
+						"items": "minecraft:copper_ingot"
 					}
 				]
 			},
@@ -13,7 +13,7 @@
 		},
 		"has_the_recipe": {
 			"conditions": {
-				"recipe": "mc2:shamlet"
+				"recipe": "mc2:navigoggles"
 			},
 			"trigger": "minecraft:recipe_unlocked"
 		}
@@ -21,12 +21,12 @@
 	"requirements": [
 		[
 			"has_the_recipe",
-			"obsidian"
+			"has_copper"
 		]
 	],
 	"rewards": {
 		"recipes": [
-			"mc2:shamlet"
+			"mc2:navigoggles"
 		]
 	}
 }

@@ -1,0 +1,18 @@
+# spider_cowl is fully generated via plugin!!! Yipee!!
+# Except removing the night vision, that's still handled externally
+
+predicate mc2:wearing_spider_cowl {
+	"condition": "minecraft:entity_properties",
+	"entity": "this",
+	"predicate": {
+		"equipment": {
+			"head": {
+				"predicates": {
+					"minecraft:custom_data": {
+						"mc2.spider_cowl": true
+					}
+				}
+			}
+		}
+	}
+}

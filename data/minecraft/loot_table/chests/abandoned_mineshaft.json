@@ -122,13 +122,15 @@
 								"!minecraft:enchantable": {},
 								"minecraft:custom_data": "{mc2.blueprint_pickaxe:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 								"minecraft:item_model": "mc2:blueprint_pickaxe",
-								"minecraft:item_name": "Golden Pickaxe Blueprint",
+								"minecraft:item_name": {
+									"translate": "item.mc2.blueprint_pickaxe"
+								},
 								"minecraft:max_stack_size": 1,
 								"minecraft:lore": [
 									{
 										"color": "gray",
 										"italic": false,
-										"text": "Unlocks a new recipe."
+										"translate": "item.mc2.blueprint.desc"
 									}
 								],
 								"minecraft:recipes": [

@@ -1,0 +1,21 @@
+{
+	"item.mc2.amethyst_drill": "Amethyst Drill",
+	"item.mc2.blueprint_crossbow": "Crossbow Blueprint",
+	"item.mc2.blueprint_pickaxe": "Golden Pickaxe Blueprint",
+	"item.mc2.blueprint.desc": "Unlocks a new recipe.",
+	"item.mc2.boots_of_swiftness": "Boots of Swiftness",
+	"item.mc2.dripstone_spear": "Dripstone Spear",
+	"item.mc2.glide_feather": "Glide Feather",
+	"item.mc2.jerky": "Jerky",
+	"item.mc2.amethyst_saber": "Amethyst Saber",
+	"item.mc2.recovery_compass.desc1": "Teleports you home",
+	"item.mc2.recovery_compass.desc2": "Unbreakable, charges with XP.",
+	"item.mc2.piglin_mask": "Piglin Mask",
+	"item.mc2.spider_cowl": "Spider Cowl",
+	"item.mc2.spider_cowl.desc1": "Grants night vision",
+	"item.mc2.spider_cowl.desc2": "Degrades with time",
+	"item.mc2.magic_conch": "Magic Conch Shell",
+	"item.mc2.navigoggles": "NaviGoggles",
+	"item.mc2.navigoggles.desc": "Shows coordinates and block information",
+	"item.mc2.gazing_artifact": "Gazing Artifact"
+}

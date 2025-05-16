@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures":{
-		"layer0": "mc2:item/supershell"	
+		"layer0": "mc2:item/magic_conch"	
 	}
 }

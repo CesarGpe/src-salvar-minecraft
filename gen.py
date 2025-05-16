@@ -3,7 +3,12 @@ from beet import Context, JsonFile, LootTable, Model, ItemModel, Equipment
 
 def beet_default(ctx: Context):
 	print("Dummy!")
-def to_snake_case(name: str) -> str:
+
+def translate_key(raw):
+		if raw is None:
+			return None
+		key:str = raw.get("translate")
+		name = key.removeprefix("item.mc2.")
 		return re.sub(r'\s+', '_', name.strip().lower())
 
 def creative_menu(ctx: Context):
@@ -20,10 +25,10 @@ def creative_menu(ctx: Context):
 
 		# Only add recipes whose result has minecraft:custom_data
 		if "minecraft:custom_data" in components:
-			item_name = result.get("id")
+			name = result.get("id")
 			entry = {
 				"type": "minecraft:item",
-				"name": item_name,
+				"name": name,
 				"functions": [
 					{
 						"function": "minecraft:set_components",
@@ -57,7 +62,7 @@ def creative_menu(ctx: Context):
 			if func.get("function") in {"minecraft:set_components", "set_components"}:
 				components = func.get("components", {})
 				if "minecraft:item_name" in components:
-					return components["minecraft:item_name"].lower()
+					return translate_key(components["minecraft:item_name"])
 		# Fallback to the item id (like minecraft:diamond_sword)
 		name = entry_dict.get("name", "").lower()
 		if ":" in name:
@@ -111,19 +116,19 @@ def creative_menu(ctx: Context):
 
 	# === Generate per-item loot tables ===
 	for entry in sorted_entries:
-		item_name:str = None
+		name:str = None
 		for func in entry.get("functions", []):
 			if func.get("function") == "minecraft:set_components":
 				components = func.get("components", {})
-				item_name = components.get("minecraft:item_name")
+				name = translate_key(components.get("minecraft:item_name"))
 				break
 
 		# If item_name was not found in components, use the fallback from entry["name"]
-		if not item_name:
+		if not name:
 			raw_name = entry.get("name", "")
-			item_name = raw_name.removeprefix("minecraft:")
+			name = raw_name.removeprefix("minecraft:")
 
-		if item_name:
+		if name:
 			single_entry_loot_table = {
 				"pools": [{
 					"rolls": 1,
@@ -131,7 +136,7 @@ def creative_menu(ctx: Context):
 				}]
 			}
 
-			ctx.data.loot_tables[f"mc2:item/{to_snake_case(item_name)}"] = LootTable(
+			ctx.data.loot_tables[f"mc2:item/{name}"] = LootTable(
 				_content = single_entry_loot_table,
 				serializer = lambda d: json.dumps(d, indent=4, sort_keys=True),
 				deserializer = json.loads

@@ -13,7 +13,7 @@
 		},
 		"has_the_recipe": {
 			"conditions": {
-				"recipe": "mc2:rapier"
+				"recipe": "mc2:amethyst_saber"
 			},
 			"trigger": "minecraft:recipe_unlocked"
 		}
@@ -26,7 +26,7 @@
 	],
 	"rewards": {
 		"recipes": [
-			"mc2:rapier"
+			"mc2:amethyst_saber"
 		]
 	}
 }

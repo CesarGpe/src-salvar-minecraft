@@ -8,7 +8,9 @@
 		"id": "minecraft:cooked_mutton",
 		"components": {
 			"minecraft:item_model": "mc2:jerky",
-			"minecraft:item_name": "Jerky",
+			"minecraft:item_name": {
+				"translate": "item.mc2.jerky"
+			},
 			"minecraft:food": {
 				"nutrition": 5,
 				"saturation": 6

@@ -13,7 +13,7 @@
 		},
 		"has_the_recipe": {
 			"conditions": {
-				"recipe": "mc2:hopoo_feather"
+				"recipe": "mc2:glide_feather"
 			},
 			"trigger": "minecraft:recipe_unlocked"
 		}
@@ -26,7 +26,7 @@
 	],
 	"rewards": {
 		"recipes": [
-			"mc2:hopoo_feather"
+			"mc2:glide_feather"
 		]
 	}
 }

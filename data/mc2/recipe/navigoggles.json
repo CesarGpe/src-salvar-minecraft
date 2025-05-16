@@ -22,7 +22,9 @@
 	"result": {
 		"id": "minecraft:poisonous_potato",
 		"components": {
-			"minecraft:item_name": "NaviGoggles",
+			"minecraft:item_name": {
+				"translate": "item.mc2.navigoggles"
+			},
 			"minecraft:max_stack_size": 1,
 			"minecraft:max_damage": 135,
 			"minecraft:damage": 0,
@@ -31,13 +33,13 @@
 					"minecraft:copper_block"
 				]
 			},
-			"minecraft:item_model": "mc2:tinker_goggles",
+			"minecraft:item_model": "mc2:navigoggles",
 			"minecraft:rarity": "common",
 			"minecraft:lore": [
 				{
 					"color": "gray",
 					"italic": false,
-					"text": "Shows coordinates and block information."
+					"translate": "item.mc2.navigoggles.desc"
 				}
 			],
 			"minecraft:equippable": {
@@ -45,10 +47,10 @@
 				"equip_sound": "minecraft:item.armor.equip_iron",
 				"asset_id": "mc2:redstone_goggles",
 				"damage_on_hurt": true,
-				"camera_overlay": "mc2:overlay/tinker_goggles",
+				"camera_overlay": "mc2:overlay/navigoggles",
 				"dispensable": true
 			},
-			"minecraft:custom_data": "{mc2.tinker_goggles:true,smithed:{ignore:{functionality:true,crafting:true}}}",
+			"minecraft:custom_data": "{mc2.navigoggles:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"!minecraft:consumable": {}
 		}
 	}

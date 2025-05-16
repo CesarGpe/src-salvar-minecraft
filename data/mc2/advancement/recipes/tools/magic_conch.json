@@ -13,7 +13,7 @@
 		},
 		"has_the_recipe": {
 			"conditions": {
-				"recipe": "mc2:supershell"
+				"recipe": "mc2:magic_conch"
 			},
 			"trigger": "minecraft:recipe_unlocked"
 		}
@@ -26,7 +26,7 @@
 	],
 	"rewards": {
 		"recipes": [
-			"mc2:supershell"
+			"mc2:magic_conch"
 		]
 	}
 }

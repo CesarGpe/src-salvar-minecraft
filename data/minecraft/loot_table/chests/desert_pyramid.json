@@ -281,7 +281,9 @@
 									"damage_on_hurt": true
 								},
 								"minecraft:item_model": "mc2:boots_of_swiftness",
-								"minecraft:item_name": "Boots of Swiftness",
+								"minecraft:item_name": {
+									"translate": "item.mc2.boots_of_swiftness"
+								},
 								"minecraft:max_stack_size": 1,
 								"minecraft:rarity": "uncommon",
 								"minecraft:attribute_modifiers": [

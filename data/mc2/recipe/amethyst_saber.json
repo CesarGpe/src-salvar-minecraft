@@ -18,9 +18,11 @@
 			"!minecraft:enchantable": {
 				"value": 15
 			},
-			"minecraft:item_model": "mc2:rapier",
-			"minecraft:item_name": "Amethyst Saber",
-			"minecraft:custom_data": "{mc2.rapier:true,smithed:{ignore:{functionality:true,crafting:true}}}",
+			"minecraft:item_model": "mc2:amethyst_saber",
+			"minecraft:item_name": {
+				"translate": "item.mc2.amethyst_saber"
+			},
+			"minecraft:custom_data": "{mc2.amethyst_saber:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"minecraft:max_stack_size": 1,
 			"minecraft:max_damage": 150,
 			"minecraft:damage": 0,
@@ -37,21 +39,21 @@
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:attack_damage",
-					"id": "minecraft:rapier_damage",
+					"id": "minecraft:amethyst_saber_damage",
 					"amount": 2,
 					"operation": "add_value",
 					"slot": "mainhand"
 				},
 				{
 					"type": "minecraft:attack_speed",
-					"id": "minecraft:rapier_speed",
+					"id": "minecraft:amethyst_saber_speed",
 					"amount": 4,
 					"operation": "add_value",
 					"slot": "mainhand"
 				},
 				{
 					"type": "minecraft:entity_interaction_range",
-					"id": "mc2:rapier_reach",
+					"id": "mc2:amethyst_saber_reach",
 					"amount": 0.5,
 					"operation": "add_value",
 					"slot": "mainhand"

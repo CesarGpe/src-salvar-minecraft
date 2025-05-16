@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures":{
-		"layer0": "mc2:item/hopoo_feather"	
+		"layer0": "mc2:item/glide_feather"
 	},
 	"display": {
 		"thirdperson_righthand": {

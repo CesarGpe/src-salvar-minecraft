@@ -20,12 +20,14 @@
 			"minecraft:damage": 0,
 			"minecraft:equippable": {
 				"slot": "head",
-				"asset_id": "mc2:shamlet_head",
+				"asset_id": "mc2:piglin_mask",
 				"damage_on_hurt": true
 			},
-			"minecraft:item_model": "mc2:shamlet",
-			"minecraft:item_name": "Piglin Mask",
-			"minecraft:custom_data": "{mc2.shamlet:true,smithed:{ignore:{functionality:true,crafting:true}}}",
+			"minecraft:item_model": "mc2:piglin_mask",
+			"minecraft:item_name": {
+				"translate": "item.mc2.piglin_mask"
+			},
+			"minecraft:custom_data": "{mc2.piglin_mask:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"minecraft:max_stack_size": 1,
 			"minecraft:rarity": "common"
 		},

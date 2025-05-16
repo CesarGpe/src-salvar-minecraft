@@ -13,9 +13,11 @@
 	"result": {
 		"id": "minecraft:poisonous_potato",
 		"components": {
-			"minecraft:item_model": "mc2:supershell",
-			"minecraft:custom_data": "{mc2.supershell:true,smithed:{ignore:{functionality:true,crafting:true}}}",
-			"minecraft:item_name": "Magic Conch Shell",
+			"minecraft:item_model": "mc2:magic_conch",
+			"minecraft:custom_data": "{mc2.magic_conch:true,smithed:{ignore:{functionality:true,crafting:true}}}",
+			"minecraft:item_name": {
+				"translate": "item.mc2.magic_conch"
+			},
 			"!minecraft:consumable": {},
 			"minecraft:max_damage": 50,
 			"minecraft:damage": 0,
@@ -23,14 +25,14 @@
 			"minecraft:attribute_modifiers": [
 				{
 					"type": "minecraft:submerged_mining_speed",
-					"id": "minecraft:supershell_speed",
+					"id": "minecraft:magic_conch_speed",
 					"amount": 1,
 					"operation": "add_multiplied_total",
 					"slot": "hand"
 				},
 				{
 					"type": "minecraft:oxygen_bonus",
-					"id": "minecraft:supershell_oxygen",
+					"id": "minecraft:magic_conch_oxygen",
 					"amount": 2,
 					"operation": "add_value",
 					"slot": "hand"

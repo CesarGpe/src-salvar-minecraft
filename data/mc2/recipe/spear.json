@@ -15,7 +15,9 @@
 		"components": {
 			"!minecraft:enchantable": {},
 			"minecraft:item_model": "mc2:dripstone_spear",
-			"minecraft:item_name": "Dripstone Spear",
+			"minecraft:item_name": {
+				"translate": "item.mc2.dripstone_spear"
+			},
 			"minecraft:custom_data": "{mc2.dripstone_spear:true,smithed:{ignore:{functionality:true,crafting:true}}}",
 			"minecraft:attribute_modifiers": [
 				{

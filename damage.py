@@ -17,13 +17,13 @@ class ItemConfig:
 
 # List of custom_data tags that will be affected by this plugin
 ITEMS = [
-    ItemConfig(tag="udjat", slot=["weapon.offhand","weapon.mainhand"]),
-    ItemConfig(tag="hopoo_feather", slot=["weapon.offhand","weapon.mainhand"]),
-    ItemConfig(tag="supershell", slot=["weapon.offhand","weapon.mainhand"]),
-    ItemConfig(tag="spidercap", slot="armor.head", max_damage=20,
+    ItemConfig(tag="gazing_artifact", slot=["weapon.offhand","weapon.mainhand"]),
+    ItemConfig(tag="glide_feather", slot=["weapon.offhand","weapon.mainhand"]),
+    ItemConfig(tag="magic_conch", slot=["weapon.offhand","weapon.mainhand"]),
+    ItemConfig(tag="spider_cowl", slot="armor.head", max_damage=20,
 			   tick_func=[
 				   'effect give @s minecraft:night_vision 11 0 true',
-				   'tag @s add mc2.wearing_spidercap'
+				   'tag @s add mc2.wearing_spider_cowl'
 				],
 			   break_func=[
 				'playsound minecraft:entity.item.break player @a ~ ~ ~ 0.8 1.2 0',

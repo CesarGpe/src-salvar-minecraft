@@ -31,12 +31,12 @@
 				{
 					"color": "gray",
 					"italic": false,
-					"text": "Teleports you home."
+					"translate": "item.mc2.recovery_compass.desc1"
 				},
 				{
 					"color": "gray",
 					"italic": false,
-					"text": "Unbreakable, charges with XP."
+					"translate": "item.mc2.recovery_compass.desc2"
 				}
 			],
 			"minecraft:custom_data": "{mc2.recovery_compass:true,smithed:{ignore:{functionality:true,crafting:true}}}"

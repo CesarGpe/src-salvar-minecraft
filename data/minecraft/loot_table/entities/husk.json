@@ -67,14 +67,16 @@
 								"minecraft:rarity": "uncommon",
 								"minecraft:max_damage": 50,
 								"minecraft:damage": 0,
-								"minecraft:custom_data": "{mc2.udjat:true,smithed:{ignore:{functionality:true,crafting:true}}}",
-								"minecraft:item_model": "mc2:udjat",
-								"minecraft:item_name": "Gazing Artifact",
+								"minecraft:custom_data": "{mc2.gazing_artifact:true,smithed:{ignore:{functionality:true,crafting:true}}}",
+								"minecraft:item_model": "mc2:gazing_artifact",
+								"minecraft:item_name": {
+									"translate": "item.mc2.gazing_artifact"
+								},
 								"minecraft:max_stack_size": 1,
 								"minecraft:attribute_modifiers": [
 									{
 										"type": "minecraft:block_break_speed",
-										"id": "minecraft:udjat_speed",
+										"id": "minecraft:gazing_artifact_speed",
 										"amount": 0.5,
 										"operation": "add_multiplied_total",
 										"slot": "hand"
