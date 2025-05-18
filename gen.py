@@ -183,10 +183,10 @@ def components(ctx: Context):
 			print() """
 	
 def models(ctx: Context):
+	# Equipment
 	for tex in ctx.assets.textures:
-		# Equipment
 		if tex.startswith(f"mc2:entity/equipment/humanoid/"):
-			_, name = tex.split("mc2:entity/equipment/humanoid/")
+			name = tex.removeprefix("mc2:entity/equipment/humanoid/")
 			val = f"mc2:{name}"
 			ctx.assets.equipments[val] = Equipment({
 				"layers": {
@@ -197,18 +197,21 @@ def models(ctx: Context):
 					]
 				}
 			})
-		# Items
-		if tex.startswith(f"mc2:item/"):
-			_, name = tex.split('/')
+
+	# Items
+	for model in ctx.assets.models:
+		if model.startswith(f"mc2:item/"):
+			name = model.removeprefix("mc2:item/")
+			ctx.assets.item_models[f"mc2:{name}"] = ItemModel({
+				"model" : {
+					"type" : "model",
+					"model" : model
+				}
+			})
+
 			""" ctx.assets.models[f"mc2:item/{name}"] = Model({
 				"parent": "item/handheld",
 				"textures": {
 					"layer0": tex
 				}
 			}) """
-			ctx.assets.item_models[f"mc2:{name}"] = ItemModel({
-				"model" : {
-					"type" : "model",
-					"model" : tex	
-				}
-			})

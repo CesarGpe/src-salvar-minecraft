@@ -1,28 +1,29 @@
 from utils import itemTickAdvancement
 RESULT = "mc2.navigoggles.temp"
 
-advancement mc2:items/navigoggles/tick_head itemTickAdvancement("navigoggles", "head")
-function mc2:items/navigoggles/tick_head:
+registry = itemTickAdvancement(ctx, "navigoggles", "head")
+
+function registry:
 	scoreboard players set @s RESULT 0
 	function #bs.view:at_aimed_block {run:"function mc2:items/navigoggles/check_block",with:{max_distance:5}}
-	execute if score @s RESULT matches 1 run return run advancement revoke @s only mc2:items/navigoggles/tick_head
+	execute if score @s RESULT matches 1 run return run advancement revoke @s only registry
 
 	# Player coords
 	execute store result score @s mc2.navigoggles.coords.x run data get entity @s Pos[0]
 	execute store result score @s mc2.navigoggles.coords.y run data get entity @s Pos[1]
 	execute store result score @s mc2.navigoggles.coords.z run data get entity @s Pos[2]
 	title @s actionbar ["",{"text":"XYZ: ","color":"gold"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.x"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.y"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.z"}}]
-	advancement revoke @s only mc2:items/navigoggles/tick_head
+	advancement revoke @s only registry
 
-function mc2:items/navigoggles/check_block:
+function ./check_block:
 	for i in range(16):
-		execute if block ~ ~ ~ minecraft:redstone_wire[power=i] run return run function mc2:items/navigoggles/show_info {text:"Power", number:i}
+		execute if block ~ ~ ~ minecraft:redstone_wire[power=i] run return run function ./show_info {text:"Power", number:i}
 	for i in range(26):
-		execute if block ~ ~ ~ #mc2:plants[age=i] run return run function mc2:items/navigoggles/show_info {text:"Age", number:i}
+		execute if block ~ ~ ~ #mc2:plants[age=i] run return run function ./show_info {text:"Age", number:i}
 	for i in range(2):
-		execute if block ~ ~ ~ #minecraft:saplings[stage=i] run return run function mc2:items/navigoggles/show_info {text:"Stage", number:i}
+		execute if block ~ ~ ~ #minecraft:saplings[stage=i] run return run function ./show_info {text:"Stage", number:i}
 
-function mc2:items/navigoggles/show_info:
+function ./show_info:
 	$title @s actionbar [{color:gold,text:"$(text): "},{color:white,text:"$(number)"}]
 	#particle minecraft:crit ~0.5 ~1.25 ~0.5 0 0 0 0 1 force @s
 	scoreboard players set @s RESULT 1

@@ -1,7 +1,7 @@
 import mc2:events as module
 import mc2:items/spider_cowl as module
-import mc2:items/navigoggles as module
-import mc2:items/recovery_compass as module
+import mc2:items/navigoggles/main as module
+import mc2:items/recovery_compass/main as module
 
 # Storage should all be contained in the same compound for easy resets.
 # "mc2:storage data" will be this compound, so we can delete storage with:
