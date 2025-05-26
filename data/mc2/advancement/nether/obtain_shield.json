@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:nether/find_fortress",
+  "display": {
+    "icon": {
+      "id": "minecraft:shield"
+    },
+	"title": {
+      "translate": "advancement.mc2.nether.obtain_shield.title"
+    },
+	"description": {
+      "translate": "advancement.mc2.nether.obtain_shield.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:shield"
+          }
+        ]
+      }
+    }
+  }
+}

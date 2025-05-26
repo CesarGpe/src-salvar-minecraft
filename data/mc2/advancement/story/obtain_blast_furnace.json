@@ -1,0 +1,26 @@
+{
+  "parent": "mc2:story/obtain_smoker",
+  "display": {
+    "icon": {
+      "id": "minecraft:blast_furnace"
+    },
+	"title": {
+      "translate": "advancement.mc2.story.obtain_blast_furnace.title"
+    },
+	"description": {
+      "translate": "advancement.mc2.story.obtain_blast_furnace.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blast_furnace"
+          }
+        ]
+      }
+    }
+  }
+}

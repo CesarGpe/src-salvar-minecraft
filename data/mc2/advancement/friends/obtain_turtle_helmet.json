@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:husbandry/plant_any_sniffer_seed",
+  "display": {
+    "icon": {
+      "id": "minecraft:turtle_helmet"
+    },
+	"title": {
+      "translate": "advancement.mc2.friends.obtain_turtle_helmet.title"
+    },
+	"description": {
+      "translate": "advancement.mc2.friends.obtain_turtle_helmet.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:turtle_helmet"
+          }
+        ]
+      }
+    }
+  }
+}

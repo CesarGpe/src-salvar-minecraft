@@ -1,0 +1,26 @@
+{
+  "parent": "mc2:story/find_mineshaft",
+  "display": {
+    "icon": {
+      "id": "minecraft:golden_pickaxe"
+    },
+	"title": {
+      "translate": "advancement.mc2.story.obtain_golden_pickaxe.title"
+    },
+	"description": {
+      "translate": "advancement.mc2.story.obtain_golden_pickaxe.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:golden_pickaxe"
+          }
+        ]
+      }
+    }
+  }
+}

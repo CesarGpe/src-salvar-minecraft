@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List
 from utils import damageItem, itemTickAdvancement
-from setup import scoreboard, SCOREBOARDS
-from beet import Context, Function, Advancement
+from setup import scoreboard
+from beet import Context, Function
 
 @dataclass
 class ItemConfig:

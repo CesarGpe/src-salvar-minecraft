@@ -1,0 +1,15 @@
+{
+	"advancements.adventure.root.description": "The world only whispers to those who listen",
+	"advancements.adventure.kill_all_mobs.title": "Master Hunter",
+
+	"advancements.husbandry.root.description": "The world is full of resources to cherish",
+
+	"advancements.nether.root.title": "The Nether",
+	"advancements.nether.root.description": "Lets turn things up a notch, shall we?",
+	"advancements.nether.distract_piglin.title": "Glee Co.",
+	"advancements.nether.distract_piglin.description": "Distract Piglins by throwing golden items",
+
+	"advancements.end.root.description": "In this world, there's always a bigger fish",
+	"advancements.end.enter_end_gateway.title": "The Deep End",
+	"advancements.end.enter_end_gateway.description": "Deep, deeper, yet deeper"
+}

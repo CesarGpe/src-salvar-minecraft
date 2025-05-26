@@ -11,11 +11,10 @@ function mc2:load:
 	# THIS FUNCTION IS MODIFIED IN setup.py AND finish.py !!!!!
 	raw # Runs on reload, or just before loading the world
 	raw # gamerule doLimitedCrafting true
-	execute summon minecraft:marker:
-		execute store result storage mc2:storage data.world_spawn.x int 1 run data get entity @s Pos[0]
-		execute store result storage mc2:storage data.world_spawn.y int 1 run data get entity @s Pos[1]
-		execute store result storage mc2:storage data.world_spawn.z int 1 run data get entity @s Pos[2]
-		kill @s
+	# Store world spawn
+	execute summon minecraft:marker run function mc2:setup/get_world_spawn
+	# Ensure consistent advancement tab order
+	function mc2:setup/order_advancement
 
 function mc2:tick:
 	raw # Runs every game tick

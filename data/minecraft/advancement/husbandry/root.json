@@ -1,0 +1,33 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "minecraft:player",
+            "advancements": {
+              "mc2:foes/root": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:gui/advancements/backgrounds/husbandry",
+    "description": {
+      "translate": "advancements.husbandry.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:hay_block"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.husbandry.root.title"
+    }
+  },
+  "sends_telemetry_event": true
+}

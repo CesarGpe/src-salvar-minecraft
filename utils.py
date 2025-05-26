@@ -1,5 +1,5 @@
 import re
-from setup import scoreboard, SCOREBOARDS
+from setup import scoreboard
 from beet import Context, Function, Advancement
 
 def beet_default(ctx: Context):

@@ -12,10 +12,9 @@
 		"#": "minecraft:gold_ingot"
 	},
 	"result": {
-		"id": "minecraft:poisonous_potato",
+		"id": "minecraft:music_disc_pigstep",
 		"components": {
-			"!minecraft:consumable": {},
-			"!minecraft:enchantable": {},
+			"!minecraft:jukebox_playable": {},
 			"minecraft:max_damage": 20,
 			"minecraft:damage": 0,
 			"minecraft:equippable": {

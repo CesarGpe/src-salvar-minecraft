@@ -1,0 +1,31 @@
+tick_advs = ["minecraft:story/root", "minecraft:adventure/root", "mc2:friends/root", "mc2:foes/root", "minecraft:husbandry/root"]
+misc_advs = ["minecraft:nether/root", "minecraft:end/root", "mc2:challenges/root"]
+
+function mc2:setup/order_advancement:
+	for adv in tick_advs:
+		advancement revoke @a only adv
+	for adv in misc_advs:
+		middle = adv.split(":")[1].split("/")[0]
+		toog = f"mc2.temp.give_{middle}_adv"
+		tag @a[advancements={adv=true}] add toog
+		advancement revoke @a only adv
+	schedule function mc2:setup/order_advancement_1 6t replace
+
+function mc2:setup/order_advancement_1:
+	middle = misc_advs[0].split(":")[1].split("/")[0]
+	toog = f"mc2.temp.give_{middle}_adv"
+	advancement grant @a[tag=toog] only misc_advs[0]
+	tag @a remove toog
+	schedule function mc2:setup/order_advancement_2 6t replace
+
+function mc2:setup/order_advancement_2:
+	middle = misc_advs[1].split(":")[1].split("/")[0]
+	toog = f"mc2.temp.give_{middle}_adv"
+	advancement grant @a[tag=toog] only misc_advs[1]
+	tag @a remove toog
+
+function mc2:setup/get_world_spawn:
+	execute store result storage mc2:storage data.world_spawn.x int 1 run data get entity @s Pos[0]
+	execute store result storage mc2:storage data.world_spawn.y int 1 run data get entity @s Pos[1]
+	execute store result storage mc2:storage data.world_spawn.z int 1 run data get entity @s Pos[2]
+	kill @s

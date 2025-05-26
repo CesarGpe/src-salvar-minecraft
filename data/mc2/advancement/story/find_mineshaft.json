@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:story/iron_tools",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "location": {
+            "structures": [
+              "minecraft:mineshaft",
+              "minecraft:mineshaft_mesa"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "icon": {
+      "id": "minecraft:rail"
+    },
+    "title": {
+      "translate": "advancement.mc2.story.find_mineshaft.title"
+    },
+    "description": {
+      "translate": "advancement.mc2.story.find_mineshaft.description"
+    }
+  }
+}

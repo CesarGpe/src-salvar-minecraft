@@ -1,4 +1,33 @@
 {
+	"advancement.mc2.story.obtain_furnace.title": "First Spark",
+	"advancement.mc2.story.obtain_furnace.description": "Craft a Furnace for all your hot needs",
+	"advancement.mc2.story.obtain_smoker.title": "The Sound of Sizzlin'",
+	"advancement.mc2.story.obtain_smoker.description": "Craft a Smoker to cook food faster",
+	"advancement.mc2.story.obtain_blast_furnace.title": "Fast & Furnace",
+	"advancement.mc2.story.obtain_blast_furnace.description": "Craft a Blast Furnace to smelt ores faster",
+	"advancement.mc2.story.obtain_anvil.title": "Smithed",
+	"advancement.mc2.story.obtain_anvil.description": "Craft an Anvil to repair and enchant items",
+	"advancement.mc2.story.find_mineshaft.title": "Yearn for the Mines",
+	"advancement.mc2.story.find_mineshaft.description": "Enter an abandoned mineshaft",
+	"advancement.mc2.story.obtain_golden_pickaxe.title": "Golden Digger",
+	"advancement.mc2.story.obtain_golden_pickaxe.description": "Craft a Golden Pickaxe to go deeper",
+
+	"advancement.mc2.nether.obtain_shield.title": "Block Party",
+	"advancement.mc2.nether.obtain_shield.description": "Make a Shield to protect yourself",
+
+	"advancement.mc2.friends.root.title": "Friends",
+	"advancement.mc2.friends.root.description": "Every story is better shared",
+	"advancement.mc2.friends.obtain_turtle_helmet.title": "Shell Yeah!",
+	"advancement.mc2.friends.obtain_turtle_helmet.description": "Craft a Turtle Shell with Turtle Scutes and Torchflower Seeds",
+
+	"advancement.mc2.foes.root.title": "Foes",
+	"advancement.mc2.foes.root.description": "Every story needs conflict",
+	"advancement.mc2.foes.obtain_trident.title": "Forking Awesome",
+	"advancement.mc2.foes.obtain_trident.description": "Kill an Elder Guardian and craft a Trident",
+
+	"advancement.mc2.challenges.root.title": "Challenges",
+	"advancement.mc2.challenges.root.description": "Boredom: the desire for desires.          -Leo Tolstoy",
+
 	"item.mc2.amethyst_drill": "Amethyst Drill",
 	"item.mc2.blueprint_crossbow": "Crossbow Blueprint",
 	"item.mc2.blueprint_pickaxe": "Golden Pickaxe Blueprint",

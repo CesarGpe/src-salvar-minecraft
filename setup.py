@@ -2,13 +2,10 @@ from types import SimpleNamespace
 from beet import Context, Function
 
 REDUCEABLE = []
-SCOREBOARDS = SimpleNamespace()
+SCOREBOARDS = []
 def scoreboard(ctx:Context, id, name, objective, tick_reduce=False) -> str:
 	full = f"mc2.{id}.{name}"
-
-	if not hasattr(SCOREBOARDS, id):
-		setattr(SCOREBOARDS, id, SimpleNamespace())
-	getattr(SCOREBOARDS, id).__setattr__(name, full)
+	SCOREBOARDS.append(full)
 
 	if tick_reduce:
 		REDUCEABLE.append(full)
