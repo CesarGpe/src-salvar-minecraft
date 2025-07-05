@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": "minecraft:diamond",
+    "P": "minecraft:pufferfish"
+  },
+  "pattern": [
+    "DDD",
+    "DPD",
+    "DDD"
+  ],
+  "result": {
+    "components": {
+      "minecraft:item_name": {
+        "translate": "item.mc2.diamond_pufferfish"
+      },
+      "minecraft:rarity": "uncommon",
+      "minecraft:item_model": "mc2:diamond_pufferfish",
+      "minecraft:consumable": {},
+      "minecraft:food": {
+        "nutrition": 10,
+        "saturation": 20
+      },
+      "minecraft:custom_data": "{mc2.diamond_pufferfish:true,smithed:{ignore:{functionality:true,crafting:true}}}"
+    },
+    "count": 1,
+    "id": "minecraft:poisonous_potato"
+  }
+}

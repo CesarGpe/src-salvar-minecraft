@@ -1,0 +1,50 @@
+from mc2:utils import light, chance
+MADLVL = "mc2.madness.level"
+
+function ./calculate:
+	# No sanity loss in spectator
+	execute if predicate mc2:in_creative run return fail
+
+	# Sanity cannot be regained in foreign dimensions
+	execute unless dimension minecraft:overworld run return:
+		scoreboard players add @s MADLVL 1
+		execute if predicate light(0,2) run scoreboard players add @s MADLVL 3
+		execute if predicate light(3,5) run scoreboard players add @s MADLVL 2
+		execute if predicate light(6,8) run scoreboard players add @s MADLVL 1
+
+	# Sanity only goes down when underground...
+	execute if predicate mc2:underground:
+		execute if predicate light(0,1) run scoreboard players add @s MADLVL 4
+		execute if predicate light(2,3) run scoreboard players add @s MADLVL 3
+		execute if predicate light(4,5) run scoreboard players add @s MADLVL 2
+		execute if predicate light(6,7) run scoreboard players add @s MADLVL 1
+
+	# ...But it can be regained with light
+	execute if predicate light(10,15):
+		execute if predicate light(10,11) run scoreboard players remove @s MADLVL 6
+		execute if predicate light(12,13) run scoreboard players remove @s MADLVL 9
+		execute if predicate light(14,15) run scoreboard players remove @s MADLVL 12
+		execute if predicate mc2:can_see_sky run scoreboard players remove @s MADLVL 6
+
+	# Things to do with the score
+	execute if score @s MADLVL matches ..0 run scoreboard players set @s MADLVL 0
+	execute if score @s MADLVL matches 1200..2399 :
+		effect give @s minecraft:unluck 20 0 true
+		execute if predicate chance(0.007) if predicate mc2:spawn_phantom run function ./spawn_phantom
+	execute if score @s MADLVL matches 2400..3599 :
+		effect give @s minecraft:unluck 20 1 true
+		execute if predicate chance(0.016) if predicate mc2:spawn_phantom run function ./spawn_phantom
+	execute if score @s MADLVL matches 3600.. :
+		effect give @s minecraft:unluck 20 2 true
+		execute if predicate chance(0.032) if predicate mc2:spawn_phantom run function ./spawn_phantom
+		scoreboard players set @s MADLVL 3600
+
+function ./spawn_phantom:
+	playsound minecraft:entity.phantom.ambient hostile @s
+	execute summon minecraft:marker:
+		spreadplayers ~ ~ 8 8 false @s
+		tp @s ~ ~20 ~
+		execute at @s:
+			summon phantom
+			particle minecraft:dust{color:[0,1,0],scale:2} ~ ~ ~ 0.5 0.5 0.5 1 30
+		kill @s

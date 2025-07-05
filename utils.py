@@ -4,8 +4,6 @@ from beet import Context, Function, Advancement
 
 def beet_default(ctx: Context):
 	scoreboard(ctx, "utils", "durability", "dummy")
-	ctx.data.functions["mc2:utils/damage_macro"] = Function('$item modify entity @s $(slot) {"function": "minecraft:set_components","components": {"minecraft:damage": $(damage)}}')
-	ctx.data.functions["mc2:utils/tp_macro"] = Function('$tp @s $(x) $(y) $(z)')
 	
 def damageItem(SLOT:str, AMOUNT=1) -> Function:
 	DAMAGE = "mc2.utils.durability"
@@ -20,12 +18,13 @@ def damageItem(SLOT:str, AMOUNT=1) -> Function:
 		f'execute store result storage mc2:storage data.utils.damage int 1 run scoreboard players add @s {DAMAGE} {AMOUNT}',
 
 		f'data modify storage mc2:storage data.utils merge value {{slot:{SLOT}}}',
-		'function mc2:utils/damage_macro with storage mc2:storage data.utils',
+		'function mc2:technical/damage_macro with storage mc2:storage data.utils',
 	])
 
 def itemTickAdvancement(ctx: Context, tag: str, slot:str) -> str:
-	registry = f"mc2:items/{tag}/tick_{slot}"
-	ctx.data.advancements[registry] = Advancement({
+	func = f"mc2:items/{tag}/tick_{slot}"
+	adv = f"mc2:technical/items/{tag}/tick_{slot}"
+	ctx.data.advancements[adv] = Advancement({
 		"criteria": {
 			"requirement": {
 				"trigger": "minecraft:tick",
@@ -51,10 +50,10 @@ def itemTickAdvancement(ctx: Context, tag: str, slot:str) -> str:
 			}
 		},
 		"rewards": {
-			"function": registry
+			"function": func
 		}
 	})
-	return registry
+	return func, adv
 
 def slot_to_nbt_path(identifier: str) -> str:
 	# Convert slot identifiers like 'armor.chest', 'weapon.mainhand', 'inventory.0',

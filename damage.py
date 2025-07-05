@@ -54,15 +54,13 @@ def registerForDamage(ctx:Context, item:ItemConfig):
 		damage_func = f"mc2:items/{item.tag}/damage_{slot_name}"
 		ctx.data.functions[damage_func] = damage_once
 
-		registry = f"mc2:items/{item.tag}/tick_{slot_name}"
-		#ctx.data.advancements[registry] = Advancement(itemTickAdvancement(item.tag, slot_name))
-		itemTickAdvancement(ctx, item.tag, slot_name)
+		FUNC, ADV = itemTickAdvancement(ctx, item.tag, slot_name)
 
 		tick_func = Function([
-			f'execute if predicate mc2:in_creative run return run advancement revoke @s only {registry}',
+			f'execute if predicate mc2:in_creative run return run advancement revoke @s only {ADV}',
 			f'scoreboard players add @s {TIMER} 1',
 			f'execute if score @s {TIMER} matches 1200.. run function {damage_func}',
-			f'advancement revoke @s only {registry}'
+			f'advancement revoke @s only {ADV}'
 		])
 		tick_func.prepend(item.tick_func)
-		ctx.data.functions[registry] = tick_func
+		ctx.data.functions[FUNC] = tick_func

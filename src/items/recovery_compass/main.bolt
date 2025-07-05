@@ -100,8 +100,8 @@ function ./use:
 				execute store result score @s MATH run data get entity @s respawn.pos[1]
 				execute store result storage mc2:storage data.recovery_compass.coords.y int 1 run scoreboard players add @s mc2.recovery_compass.math 1
 				execute store result storage mc2:storage data.recovery_compass.coords.z int 1 run data get entity @s respawn.pos[2]
-				function mc2:utils/tp_macro with storage mc2:storage data.recovery_compass.coords
-			function mc2:utils/spreadplayers_macro with storage mc2:storage data.world_spawn
+				function mc2:technical/tp_macro with storage mc2:storage data.recovery_compass.coords
+			function mc2:technical/spreadplayers_macro with storage mc2:storage data.world_spawn
 
 		# Effects need to be separated to make sure they actually happen AFTER the teleport
 		execute if score @s TIMER matches 100:

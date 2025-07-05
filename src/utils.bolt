@@ -1,13 +1,42 @@
 import re
+from beet import Predicate
+from utils import slot_to_nbt_path
 
-function mc2:utils/damage_macro:
+function mc2:technical/damage_macro:
 	$item modify entity @s $(slot) {"function": "minecraft:set_components","components": {"minecraft:damage": $(damage)}}
 
-function mc2:utils/tp_macro:
+function mc2:technical/tp_macro:
 	$tp @s $(x) $(y) $(z)
 
-function mc2:utils/spreadplayers_macro:
+function mc2:technical/spreadplayers_macro:
 	$spreadplayers $(x) $(z) 0 8 false @s
+
+def chance(value):
+	registry = f"mc2:chance/{value}"
+	if registry in ctx.data.predicates:
+		return registry
+	ctx.data.predicates[registry] = Predicate({
+		"condition": "minecraft:random_chance",
+		"chance": value
+	})
+	return registry
+
+def light(min, max):
+	registry = f"mc2:light/{min}-{max}"
+	if registry in ctx.data.predicates:
+		return registry
+	ctx.data.predicates[registry] = Predicate({
+		"condition": "minecraft:location_check",
+		"predicate": {
+			"light": {
+				"light": {
+					"min": min,
+					"max": max
+				}
+			}
+		}
+	})
+	return registry
 
 def damageItem(SLOT:str, AMOUNT=1):
 	DAMAGE = "mc2.utils.durability"
@@ -21,38 +50,4 @@ def damageItem(SLOT:str, AMOUNT=1):
 	execute store result storage mc2:storage data.utils.damage int 1 run scoreboard players add @s DAMAGE AMOUNT
 
 	data modify storage mc2:storage data.utils merge value {slot:SLOT}
-	function mc2:utils/damage_macro with storage mc2:storage data.utils
-
-def slot_to_nbt_path(identifier: str) -> str:
-    # Convert slot identifiers like 'armor.chest', 'weapon.mainhand', 'inventory.0',
-    # 'hotbar.3', 'weapon.offhand' to NBT path strings for /data commands.
-    identifier = identifier.lower()
-    mapping = {
-        'armor.head': 'equipment.head',
-        'armor.chest': 'equipment.chest',
-        'armor.legs': 'equipment.legs',
-        'armor.feet': 'equipment.feet',
-        'weapon.mainhand': 'SelectedItem',
-        'weapon.offhand': 'equipment.offhand',
-    }
-    
-    # Direct mapping
-    if identifier in mapping:
-        return mapping[identifier]
-    
-    # Hotbar slots: hotbar.0 - hotbar.8
-    hotbar_match = re.match(r'hotbar\.(\d+)', identifier)
-    if hotbar_match:
-        idx = int(hotbar_match.group(1))
-        if 0 <= idx <= 8:
-            return f'Inventory[{{Slot:{idx}b}}]'
-    
-    # Inventory slots: inventory.0 - inventory.26 (maps to slots 9-35)
-    inv_match = re.match(r'inventory\.(\d+)', identifier)
-    if inv_match:
-        idx = int(inv_match.group(1))
-        if 0 <= idx <= 26:
-            slot_idx = 9 + idx
-            return f'Inventory[{{Slot:{slot_idx}b}}]'
-    
-    raise ValueError(f"Unknown slot identifier: '{identifier}'")
+	function mc2:technical/damage_macro with storage mc2:storage data.utils

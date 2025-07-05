@@ -1,0 +1,17 @@
+{
+	"advancements.adventure.root.description": "El mundo sólo susurra a aquellos que escuchan",
+	"advancements.adventure.kill_all_mobs.title": "Maestro Cazador",
+
+	"advancements.husbandry.root.description": "El mundo esta lleno de recursos para usar",
+
+	"advancements.nether.root.title": "El Nether",
+	"advancements.nether.root.description": "Hora de subirle de nivel, ¿no crees?",
+	"advancements.nether.distract_piglin.title": "Glee Co.",
+	"advancements.nether.distract_piglin.description": "Distrae a los Piglins lanzándoles objetos de oro",
+
+	"advancements.end.root.description": "En este mundo, siempre hay un pez más grande",
+	"advancements.end.enter_end_gateway.title": "El Gran Final",
+	"advancements.end.enter_end_gateway.description": "Profundo, más profundo, aun más",
+
+	"effect.minecraft.unluck": "Delirio Minero"
+}

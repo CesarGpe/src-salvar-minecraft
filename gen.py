@@ -11,7 +11,7 @@ def translate_key(raw):
 		name = key.removeprefix("item.mc2.")
 		return re.sub(r'\s+', '_', name.strip().lower())
 
-def creative_menu(ctx: Context):
+def creative(ctx: Context):
 	# Use a set to store unique JSON-stringified entries
 	unique_entries = set()
 
@@ -136,7 +136,7 @@ def creative_menu(ctx: Context):
 				}]
 			}
 
-			ctx.data.loot_tables[f"mc2:item/{name}"] = LootTable(
+			ctx.data.loot_tables[f"mc2:items/{name}"] = LootTable(
 				_content = single_entry_loot_table,
 				serializer = lambda d: json.dumps(d, indent=4, sort_keys=True),
 				deserializer = json.loads
@@ -181,7 +181,7 @@ def components(ctx: Context):
 			print("#", k)
 			print(v)
 			print() """
-	
+
 def models(ctx: Context):
 	# Equipment
 	for tex in ctx.assets.textures:
@@ -215,3 +215,9 @@ def models(ctx: Context):
 					"layer0": tex
 				}
 			}) """
+
+def lang(ctx: Context):
+	langs = ["es_ar", "es_cl", "es_ec", "es_es", "es_uy", "es_ve"]
+	for l in langs:
+		ctx.assets.languages[f"mc2:{l}"] = ctx.assets.languages["mc2:es_mx"]
+		ctx.assets.languages[f"minecraft:{l}"] = ctx.assets.languages["minecraft:es_mx"]

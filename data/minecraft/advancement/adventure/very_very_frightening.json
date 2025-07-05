@@ -1,5 +1,5 @@
 {
-  "parent": "mc2:foes/obtain_trident",
+  "parent": "minecraft:adventure/throw_trident",
   "criteria": {
     "struck_villager": {
       "conditions": {

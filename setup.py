@@ -1,5 +1,4 @@
-from types import SimpleNamespace
-from beet import Context, Function
+from beet import Context
 
 REDUCEABLE = []
 SCOREBOARDS = []
@@ -12,10 +11,12 @@ def scoreboard(ctx:Context, id, name, objective, tick_reduce=False) -> str:
 	ctx.data.functions["mc2:load"].append(f'scoreboard objectives add {full} {objective}')
 	return full
 
-SCHEDULES = []
-def schedule(ctx:Context, func, time):
-	SCHEDULES.append(func)
-	ctx.data.functions["mc2:load"].append(f'schedule function {func} {time} replace')
+CLOCKS = []
+def clock(ctx:Context, func, time):
+	CLOCKS.append(func)
+	cmd = f'schedule function {func} {time} replace'
+	ctx.data.functions[func].append(cmd)
+	ctx.data.functions["mc2:load"].append(cmd)
 
 def beet_default(ctx: Context):
     # Technical scoreboards
@@ -29,4 +30,6 @@ def beet_default(ctx: Context):
 	scoreboard(ctx, "navigoggles", "coords.y", "dummy")
 	scoreboard(ctx, "navigoggles", "coords.z", "dummy")
 	scoreboard(ctx, "navigoggles", "temp", "dummy")
+
+	scoreboard(ctx, "madness", "level", "dummy")
 		

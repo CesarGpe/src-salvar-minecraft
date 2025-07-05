@@ -1,4 +1,7 @@
-import mc2:events as module
+import mc2:technical/event/main as module
+import mc2:technical/setup/main as module
+
+import mc2:madness/main as module
 import mc2:items/spider_cowl as module
 import mc2:items/navigoggles/main as module
 import mc2:items/recovery_compass/main as module
@@ -10,11 +13,13 @@ import mc2:items/recovery_compass/main as module
 function mc2:load:
 	# THIS FUNCTION IS MODIFIED IN setup.py AND finish.py !!!!!
 	raw # Runs on reload, or just before loading the world
-	raw # gamerule doLimitedCrafting true
+	gamerule doLimitedCrafting true
+	gamerule doInsomnia false
+
 	# Store world spawn
-	execute summon minecraft:marker run function mc2:setup/get_world_spawn
+	execute summon minecraft:marker run function mc2:technical/setup/get_world_spawn
 	# Ensure consistent advancement tab order
-	function mc2:setup/order_advancement
+	function mc2:technical/setup/order_adv
 
 function mc2:tick:
 	raw # Runs every game tick
@@ -26,7 +31,7 @@ function mc2:player_tick:
 		effect clear @s minecraft:night_vision
 		tag @s remove mc2.wearing_spider_cowl
 
-function mc2:sch/20t:
+function mc2:technical/second_clock:
 	#item replace entity @e[type=minecraft:drowned,nbt={equipment:{mainhand:{id:"minecraft:trident"}}}] weapon.mainhand with iron_sword 1
 	execute as @e[type=minecraft:drowned,tag=!mc2.drowned.checked,tag=!smithed.entity,tag=!smithed.strict]:
 		execute if items entity @s weapon.mainhand minecraft:trident run item replace entity @s weapon.mainhand with minecraft:iron_sword
@@ -42,8 +47,9 @@ function mc2:sch/20t:
 			tag @s remove mc2.armadillo.scared
 		execute if data entity @s {state:scared} run return run data modify entity @s Invulnerable set value true
 		data modify entity @s Invulnerable set value false
-	# Loop
-	schedule function mc2:sch/20t 20t replace
+
+function mc2:technical/ten_second_clock:
+	execute as @a at @s run function mc2:madness/calculate
 
 append function_tag minecraft:load {
     "values": [

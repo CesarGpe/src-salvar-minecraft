@@ -25,9 +25,10 @@ pipeline:
   - utils
   - damage
   - finish
-  - gen.components
+  - gen.lang
   - gen.models
-  - gen.creative_menu
+  - gen.creative
+  - gen.components
   - beet.contrib.format_json
 
 meta:
@@ -46,8 +47,10 @@ meta:
       - utils
       - damage
       - finish
+      - gen.lang
+      - gen.models
+      - gen.creative
       - gen.components
-      - gen.creative_menu
       - beet.contrib.format_json
 
 output: bin

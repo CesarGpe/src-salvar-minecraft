@@ -1,19 +1,19 @@
 from utils import itemTickAdvancement
 RESULT = "mc2.navigoggles.temp"
 
-registry = itemTickAdvancement(ctx, "navigoggles", "head")
+FUNC, ADV = itemTickAdvancement(ctx, "navigoggles", "head")
 
-function registry:
+function FUNC:
 	scoreboard players set @s RESULT 0
 	function #bs.view:at_aimed_block {run:"function mc2:items/navigoggles/check_block",with:{max_distance:5}}
-	execute if score @s RESULT matches 1 run return run advancement revoke @s only registry
+	execute if score @s RESULT matches 1 run return run advancement revoke @s only ADV
 
 	# Player coords
 	execute store result score @s mc2.navigoggles.coords.x run data get entity @s Pos[0]
 	execute store result score @s mc2.navigoggles.coords.y run data get entity @s Pos[1]
 	execute store result score @s mc2.navigoggles.coords.z run data get entity @s Pos[2]
 	title @s actionbar ["",{"text":"XYZ: ","color":"gold"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.x"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.y"}},{"text":" ","color":"white"},{"color":"white","score":{"name":"@s","objective":"mc2.navigoggles.coords.z"}}]
-	advancement revoke @s only registry
+	advancement revoke @s only ADV
 
 function ./check_block:
 	for i in range(16):
